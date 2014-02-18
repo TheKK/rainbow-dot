@@ -13,7 +13,7 @@ Window::Window ()
 	m_WindowAspect = 0;
 
 	m_Window = NULL;
-	m_WindowSurface = NULL;
+	m_Renderer = NULL;
 }
 
 Window::~Window ()
@@ -22,31 +22,38 @@ Window::~Window ()
 }
 
 bool
-Window::Init ( char* windowTitle, int width, int height )
+Window::Init ( char* windowTitle, float width, float height )
 {
 	//Recored window aspect
-	m_WindowAspect = ( float )width / ( float )height;
+	m_WindowAspect = width / height;
 
 	//Initialize SDL
-	if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 )
+	if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
 		return false;
 
 	//Create and setup new SDL window, and check error
 	m_Window = SDL_CreateWindow(
 			windowTitle,					//Window title
-			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,	//Position of window
+			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,	//Position where window appear
 			width, height,					//Size of window
-			SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE		//Window flags
+			SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE		//SDL window flags
 			);
 	if( m_Window == NULL ){
-		fprintf( stderr, "SDL error: %s\n", SDL_GetError() );
+		fprintf( stderr, "SDL window error: %s\n", SDL_GetError() );
 		return false;
 	}
 
-	m_WindowSurface = SDL_GetWindowSurface( m_Window );
-
-	//Lock mouse
-	//SDL_SetRelativeMouseMode( SDL_TRUE );
+	//Create and setup new SDL renderer, and check error
+	m_Renderer = SDL_CreateRenderer(
+			m_Window,			//For which window
+			-1,				//The index of rendering driver to initialize
+			SDL_RENDERER_ACCELERATED	//SDL renderer flags
+			);
+	if( m_Renderer == NULL ){
+		//fprintf( stderr, "SDL renderer error: %s\n" SDL_GetError() );
+		fprintf( stderr, "SDL renderer error: %s\n", SDL_GetError() );
+		return false;
+	}
 
 	srand( time( NULL ) );
 
@@ -56,12 +63,14 @@ Window::Init ( char* windowTitle, int width, int height )
 void
 Window::Clear ()
 {
+	SDL_SetRenderDrawColor( m_Renderer, 51, 51, 51, 255 );
+	SDL_RenderClear( m_Renderer );
 }
 
 void
 Window::Present ()
 {
-	SDL_UpdateWindowSurface( m_Window );
+	SDL_RenderPresent( m_Renderer );
 }
 
 void
@@ -69,6 +78,9 @@ Window::Quit ()
 {
 	SDL_DestroyWindow( m_Window );
 	m_Window = NULL;
+
+	SDL_DestroyRenderer( m_Renderer );
+	m_Renderer = NULL;
 
 	SDL_Quit();
 }

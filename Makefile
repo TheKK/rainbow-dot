@@ -3,7 +3,7 @@ CXXFLAG= -Wall
 
 SRC= $(PWD)/src/*.cpp
 INCLUDE= -I $(PWD)/include/
-OBJ= main.o game.o window.o
+OBJ= main.o game.o window.o timer.o
 
 LIB= -lSDL2 -lSDL2main
 

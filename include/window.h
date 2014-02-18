@@ -19,7 +19,7 @@ class Window
 		Window();
 		~Window();
 
-		bool Init( char* windowTitle, int width, int height );
+		bool Init( char* windowTitle, float width, float height );
 
 		void Clear();
 		void Present();
@@ -28,9 +28,10 @@ class Window
 
 		SDL_Window* GetWindow();
 	private:
-		//SDL window
+		//SDL window pointer
 		SDL_Window* m_Window;
-		SDL_Surface* m_WindowSurface;
+		//SDL renderer pointer
+		SDL_Renderer* m_Renderer;
 
 		float m_WindowAspect;
 

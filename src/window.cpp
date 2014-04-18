@@ -6,6 +6,11 @@
  */
 
 #include "window.h"
+SDL_Window* Window::m_Window;
+SDL_Renderer* Window::m_Renderer;
+
+float Window::m_WindowAspect;
+bool Window::m_IsWindowed;
 
 Window::Window ()
 {
@@ -30,6 +35,10 @@ Window::Init ( char* windowTitle, float width, float height )
 	//Initialize SDL
 	if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
 		return false;
+
+	//Set texture filtering to linear
+	if( SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "linear" ) == false )
+		fprintf( stderr, "Warning: Linear textrue filtering not enableed\n" );
 
 	//Create and setup new SDL window, and check error
 	m_Window = SDL_CreateWindow(
@@ -83,10 +92,4 @@ Window::Quit ()
 	m_Renderer = NULL;
 
 	SDL_Quit();
-}
-
-SDL_Window*
-Window::GetWindow ()
-{
-	return m_Window;
 }

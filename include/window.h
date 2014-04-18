@@ -19,23 +19,20 @@ class Window
 		Window();
 		~Window();
 
-		bool Init( char* windowTitle, float width, float height );
+		static bool Init( char* windowTitle, float width, float height );
 
-		void Clear();
-		void Present();
+		static void Clear();
+		static void Present();
 
-		void Quit();
+		static void Quit();
 
-		SDL_Window* GetWindow();
+		static SDL_Window* m_Window;
+		static SDL_Renderer* m_Renderer;
 	private:
-		//SDL window pointer
-		SDL_Window* m_Window;
-		//SDL renderer pointer
-		SDL_Renderer* m_Renderer;
 
-		float m_WindowAspect;
+		static float m_WindowAspect;
 
-		bool m_IsWindowed;
+		static bool m_IsWindowed;
 };
 
 #endif

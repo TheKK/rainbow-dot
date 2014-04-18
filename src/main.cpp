@@ -6,16 +6,56 @@
  */
 
 #include <iostream>
-#include "game.h"
 
-using namespace std;
+#include "global.h"
+
+#include "gameStatus.h"
+#include "startScreen.h"
+
+bool gameIsRunning = true;
+
+enum GameStatusFlag gameStatusFlag;
 
 int
-main ( int argc, char* argv[] )
+main( int argc, char* argv[] )
 {
-	Game* game = new Game();
+	GameStatus* game = NULL;
+	SDL_Event event;
+	Timer timer;
 
-	game->Execute();
+	Window::Init( "RainbowDOT", GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT );
+
+	//Here we go!
+	while( 1 ){
+
+		//Swtich game status
+		switch( gameStatusFlag ){
+			case startScreen:
+				game = new StartScreen();
+				gameIsRunning = true;
+				break;
+
+			case gameQuit:
+				return 0;
+				break;
+		}
+
+		while( gameIsRunning ){
+
+			timer.Start();
+
+			while( SDL_PollEvent( &event ) )
+					game->EventHandler( &event );
+
+			game->Update();
+			game->Render();	
+
+			if( timer.GetTicks() < 1000 / GAME_FPS )
+				SDL_Delay( ( 1000 / GAME_FPS ) - timer.GetTicks() );
+		}
+
+		delete game;
+	}
 
 	return 0;
 }

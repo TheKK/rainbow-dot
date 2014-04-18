@@ -4,7 +4,6 @@ CXXFLAG= -Wall -g
 SRC= $(PWD)/src/*.cpp
 INCLUDE= -I $(PWD)/include/
 OBJ= main.o window.o timer.o startScreen.o
-
 LIB= -lSDL2 -lSDL2main
 
 OUT_EXE= rainbow

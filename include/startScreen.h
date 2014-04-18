@@ -35,16 +35,12 @@ class StartScreen: public GameStatus
 		void Update();
 		void Render();
 
-		void CleanUp();
-
 	private:
 		//Logo of KK
 		SDL_Texture* m_Logo;
 		SDL_Rect m_LogoPos;
 
-		//Picture of what?
-		//SDL_Texture* m_Picture;
-		//SDL_Rect m_PicturePos;
+		void CleanUp();
 };
 
 #endif

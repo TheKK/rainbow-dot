@@ -33,8 +33,11 @@ Window::Init ( char* windowTitle, float width, float height )
 	m_WindowAspect = width / height;
 
 	//Initialize SDL
-	if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
-		return false;
+	if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 ){
+		fprintf( stderr, "SDL window error: %s\n", SDL_GetError() );
+		exit( 1 );
+	}
+
 
 	//Set texture filtering to linear
 	if( SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "linear" ) == false )
@@ -49,7 +52,7 @@ Window::Init ( char* windowTitle, float width, float height )
 			);
 	if( m_Window == NULL ){
 		fprintf( stderr, "SDL window error: %s\n", SDL_GetError() );
-		return false;
+		exit( 1 );
 	}
 
 	//Create and setup new SDL renderer, and check error
@@ -61,7 +64,7 @@ Window::Init ( char* windowTitle, float width, float height )
 	if( m_Renderer == NULL ){
 		//fprintf( stderr, "SDL renderer error: %s\n" SDL_GetError() );
 		fprintf( stderr, "SDL renderer error: %s\n", SDL_GetError() );
-		return false;
+		exit( 1 );
 	}
 
 	srand( time( NULL ) );

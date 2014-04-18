@@ -11,6 +11,7 @@
 
 #include "gameStatus.h"
 #include "startScreen.h"
+#include "startScreen2.h"
 
 bool gameIsRunning = true;
 

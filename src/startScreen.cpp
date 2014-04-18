@@ -30,6 +30,11 @@ StartScreen::EventHandler( SDL_Event* event )
 			gameIsRunning = false;
 			gameStatusFlag = gameQuit;
 			break;
+
+		case SDL_KEYDOWN:
+			switch( event->key.keysym.sym ){
+				case SDLK_c:
+			}
 	}
 }
 

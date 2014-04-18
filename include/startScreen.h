@@ -13,11 +13,12 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 
-#include "SDLToolBox.h"
 #include "global.h"
+#include "window.h"
+#include "SDLToolBox.h"
 
 #include "gameStatus.h"
-#include "window.h"
+#include "button.h"
 #include "timer.h"
 
 using namespace std;
@@ -39,6 +40,8 @@ class StartScreen: public GameStatus
 		//Logo of KK
 		SDL_Texture* m_Logo;
 		SDL_Rect m_LogoPos;
+
+		Button* m_TestButton;
 
 		void CleanUp();
 };

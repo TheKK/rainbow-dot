@@ -15,8 +15,6 @@ StartScreen::StartScreen()
 	m_LogoPos.y = 0;
 	m_LogoPos.w = GAME_WINDOW_WIDTH;
 	m_LogoPos.h = GAME_WINDOW_HEIGHT;
-
-	m_IsSkiped = false;
 }
 
 StartScreen::~StartScreen()
@@ -37,7 +35,8 @@ StartScreen::EventHandler(SDL_Event* event)
 			switch(event->key.keysym.sym){
 				case SDLK_RETURN:
 				case SDLK_ESCAPE:
-					m_IsSkiped = true;
+					gameIsRunning = false;
+					gameStatusFlag = menuScreen;
 					break;
 			}
 	}
@@ -48,6 +47,7 @@ StartScreen::Update()
 {
 	static int frameCount = 0;
 	static unsigned int alpha = 0;
+
 	if (frameCount <= 60)
 		alpha = 255 * frameCount / 60;
 	else if (frameCount <= 90)

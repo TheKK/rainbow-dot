@@ -41,7 +41,7 @@ class StartScreen: public GameStatus
 		SDL_Texture* m_Logo;
 		SDL_Rect m_LogoPos;
 
-		Button* m_TestButton;
+		bool m_IsSkiped;
 
 		void CleanUp();
 };

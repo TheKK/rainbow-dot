@@ -45,10 +45,10 @@ Window::Init ( string windowTitle, float width, float height )
 
 	//Create and setup new SDL window, and check error
 	m_Window = SDL_CreateWindow(
-			windowTitle.c_str(),					//Window title
+			windowTitle.c_str(),				//Window title
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,	//Position where window appear
 			width, height,					//Size of window
-			SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE		//SDL window flags
+			SDL_WINDOW_SHOWN			 	//SDL window flags
 			);
 	if( m_Window == NULL ){
 		fprintf( stderr, "SDL window error: %s\n", SDL_GetError() );

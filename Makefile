@@ -3,7 +3,7 @@ CXXFLAG= -Wall -g
 
 SRC= $(PWD)/src
 INCLUDE= -I $(PWD)/include
-OBJ= main.o window.o timer.o SDLToolBox.o startScreen.o button.o
+OBJ= main.o window.o timer.o SDLToolBox.o button.o startScreen.o menuScreen.o
 LIB= -lSDL2 -lSDL2main
 
 OUT_EXE= rainbow

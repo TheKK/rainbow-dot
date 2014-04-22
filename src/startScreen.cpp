@@ -54,8 +54,10 @@ StartScreen::Update()
 		;
 	else if (frameCount <= 150)
 		alpha = 255 - (255 * (frameCount - 90) / 60);
-	else if (frameCount > 180)
-		frameCount = 0;
+	else if (frameCount > 150){
+		gameIsRunning = false;
+		gameStatusFlag = menuScreen;
+	}
 
 	SDL_SetTextureAlphaMod( m_Logo, alpha );
 

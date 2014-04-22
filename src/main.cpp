@@ -11,6 +11,7 @@
 
 #include "gameStatus.h"
 #include "startScreen.h"
+#include "menuScreen.h"
 
 bool gameIsRunning = true;
 
@@ -32,6 +33,11 @@ main( int argc, char* argv[] )
 		switch( gameStatusFlag ){
 			case startScreen:
 				game = new StartScreen();
+				gameIsRunning = true;
+				break;
+
+			case menuScreen:
+				game = new MenuScreen();
 				gameIsRunning = true;
 				break;
 

@@ -1,14 +1,12 @@
 /*
  * Author: KK <thumbd03803@gmail.com>
  *
- * startScreen.h 
+ * menuScreen.h 
  *
  */
 
-#ifndef STARTSCREEN_H
-#define STARTSCREEN_H
-
-#define LOGO_PATH	"game/pic/logo.bmp"
+#ifndef MENUSCREEN_H
+#define MENUSCREEN_H
 
 #include <iostream>
 #include <SDL2/SDL.h>
@@ -18,6 +16,7 @@
 #include "SDLToolBox.h"
 
 #include "gameStatus.h"
+#include "button.h"
 #include "timer.h"
 
 using namespace std;
@@ -25,13 +24,13 @@ using namespace std;
 extern bool gameIsRunning;
 extern enum GameStatusFlag gameStatusFlag;
 
-class StartScreen: public GameStatus
+class MenuScreen: public GameStatus
 {
 	public:
-		StartScreen();
-		~StartScreen();
+		MenuScreen();
+		~MenuScreen();
 
-		void EventHandler( SDL_Event* event );
+		void EventHandler(SDL_Event* event);
 		void Update();
 		void Render();
 
@@ -39,8 +38,6 @@ class StartScreen: public GameStatus
 		//Logo of KK
 		SDL_Texture* m_Logo;
 		SDL_Rect m_LogoPos;
-
-		bool m_IsSkiped;
 
 		void CleanUp();
 };

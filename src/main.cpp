@@ -18,19 +18,21 @@ bool gameIsRunning = true;
 enum GameStatusFlag gameStatusFlag;
 
 int
-main( int argc, char* argv[] )
+main(int argc, char* argv[])
 {
 	GameStatus* game = NULL;
+
 	SDL_Event event;
+
 	Timer timer;
 
-	Window::Init( "RainbowDOT", GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT );
+	Window::Init("RainbowDOT", GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT);
 
 	//Here we go!
-	while( 1 ){
+	while (1){
 
 		//Swtich game status
-		switch( gameStatusFlag ){
+		switch (gameStatusFlag){
 			case startScreen:
 				game = new StartScreen();
 				gameIsRunning = true;
@@ -46,18 +48,17 @@ main( int argc, char* argv[] )
 				break;
 		}
 
-		while( gameIsRunning ){
-
+		while (gameIsRunning){
 			timer.Start();
 
-			while( SDL_PollEvent( &event ) )
-					game->EventHandler( &event );
+			while (SDL_PollEvent(&event))
+					game->EventHandler(&event);
 
 			game->Update();
 			game->Render();	
 
-			if( timer.GetTicks() < 1000 / GAME_FPS )
-				SDL_Delay( ( 1000 / GAME_FPS ) - timer.GetTicks() );
+			if(timer.GetTicks() < (1000 / GAME_FPS))
+				SDL_Delay((1000 / GAME_FPS) - timer.GetTicks());
 		}
 
 		delete game;

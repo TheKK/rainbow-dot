@@ -31,7 +31,7 @@ class StartScreen: public GameStatus
 		StartScreen();
 		~StartScreen();
 
-		void EventHandler( SDL_Event* event );
+		void EventHandler(SDL_Event* event);
 		void Update();
 		void Render();
 

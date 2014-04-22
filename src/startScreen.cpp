@@ -25,14 +25,14 @@ StartScreen::~StartScreen()
 void
 StartScreen::EventHandler(SDL_Event* event)
 {
-	switch(event->type){
+	switch (event->type){
 		case SDL_QUIT:
 			gameIsRunning = false;
 			gameStatusFlag = gameQuit;
 			break;
 
 		case SDL_KEYDOWN:
-			switch(event->key.keysym.sym){
+			switch (event->key.keysym.sym){
 				case SDLK_RETURN:
 				case SDLK_ESCAPE:
 					gameIsRunning = false;
@@ -59,7 +59,7 @@ StartScreen::Update()
 		gameStatusFlag = menuScreen;
 	}
 
-	SDL_SetTextureAlphaMod( m_Logo, alpha );
+	SDL_SetTextureAlphaMod(m_Logo, alpha);
 
 	frameCount++;
 }

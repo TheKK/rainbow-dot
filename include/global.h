@@ -16,7 +16,6 @@
 
 //Recored current game status
 enum GameStatusFlag{
-
 	startScreen = 0,
 	menuScreen,
 	gameQuit

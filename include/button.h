@@ -32,7 +32,7 @@ class Button
 				int buttonWidth, int buttonHeight
 			 );
 
-		void EventHandler( SDL_Event* event );
+		void EventHandler(SDL_Event* event);
 		void Update();
 		void Render();
 
@@ -48,7 +48,7 @@ class Button
 
 		bool m_IsSelect;
 
-		bool MouseHovered( int mousePosX, int mousePosY );
+		bool MouseHovered(int mousePosX, int mousePosY);
 		void CleanUp();
 
 };

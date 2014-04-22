@@ -25,7 +25,7 @@ MenuScreen::~MenuScreen()
 void
 MenuScreen::EventHandler(SDL_Event* event)
 {
-	switch(event->type){
+	switch (event->type){
 		case SDL_QUIT:
 			gameIsRunning = false;
 			gameStatusFlag = gameQuit;

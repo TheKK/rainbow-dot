@@ -24,7 +24,7 @@ class SDLToolBox
 		SDLToolBox(){};
 		~SDLToolBox(){};
 
-		static SDL_Texture* LoadTexture( string fileName, SDL_Renderer* renderer );
+		static SDL_Texture* LoadTexture(string fileName, SDL_Renderer* renderer);
 };
 
 #endif

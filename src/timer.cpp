@@ -28,7 +28,7 @@ void Timer::Start()
 
 void Timer::Pause()
 {
-	if( ( m_IsStarted == true ) && ( m_IsPuased == false ) ){
+	if ((m_IsStarted == true) && (m_IsPuased == false)){
 		m_IsPuased = true;
 	
 		m_PauseTicks = SDL_GetTicks() - m_StartTicks;
@@ -37,7 +37,7 @@ void Timer::Pause()
 
 void Timer::Unpause()
 {
-	if( ( m_IsPuased == true ) ){
+	if ((m_IsPuased == true)){
 		m_IsPuased = false;
 	
 		m_StartTicks = SDL_GetTicks() - m_PauseTicks;
@@ -48,19 +48,25 @@ void Timer::Unpause()
 		
 int Timer::GetTicks()
 {
-	if( m_IsStarted == true ){
-		if( m_IsPuased == false )	return SDL_GetTicks() - m_StartTicks;
-		else				return m_PauseTicks;
+	if (m_IsStarted == true){
+		if (m_IsPuased == false)
+			return SDL_GetTicks() - m_StartTicks;
+		else
+			return m_PauseTicks;
 	}
 
 	return 0;
 }
 
 bool Timer::IsPaused()	
-{ return m_IsPuased; }
+{
+	return m_IsPuased;
+}
 
 bool Timer::IsStarted()	
-{ return m_IsStarted; }
+{
+	return m_IsStarted;
+}
 
 
 

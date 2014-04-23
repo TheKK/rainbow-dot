@@ -17,7 +17,6 @@
 
 #include "gameStatus.h"
 #include "button.h"
-#include "timer.h"
 
 using namespace std;
 

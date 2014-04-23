@@ -18,6 +18,7 @@
 enum GameStatusFlag{
 	startScreen = 0,
 	menuScreen,
+	prototypeScreen,
 	gameQuit
 };
 

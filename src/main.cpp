@@ -12,6 +12,8 @@
 #include "gameStatus.h"
 #include "startScreen.h"
 #include "menuScreen.h"
+#include "prototypeScreen.h"
+#include "timer.h"
 
 bool gameIsRunning = true;
 
@@ -28,6 +30,8 @@ main(int argc, char* argv[])
 
 	Window::Init("RainbowDOT", GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT);
 
+	gameStatusFlag = prototypeScreen;
+
 	//Here we go!
 	while (1){
 
@@ -43,11 +47,17 @@ main(int argc, char* argv[])
 				gameIsRunning = true;
 				break;
 
+			case prototypeScreen:
+				game = new PrototypeScreen();
+				gameIsRunning = true;
+				break;
+
 			case gameQuit:
 				return 0;
 				break;
 		}
 
+		//Main game loop
 		while (gameIsRunning){
 			timer.Start();
 

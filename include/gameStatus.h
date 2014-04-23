@@ -19,7 +19,7 @@ class GameStatus
 		GameStatus(){};
 		virtual ~GameStatus(){};
 
-		virtual void EventHandler( SDL_Event* event ){};
+		virtual void EventHandler(SDL_Event* event){};
 		virtual void Update(){};
 		virtual void Render(){};
 

@@ -78,7 +78,7 @@ Button::ButtonToggle()
 }
 
 bool
-Button::MouseHovered( int mousePosX, int mousePosY )
+Button::MouseHovered(int mousePosX, int mousePosY)
 {
 	if (
 			mousePosX < (m_ButtonPos.x + m_ButtonPos.w) &&

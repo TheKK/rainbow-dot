@@ -18,7 +18,6 @@
 #include "SDLToolBox.h"
 
 #include "gameStatus.h"
-#include "timer.h"
 
 using namespace std;
 

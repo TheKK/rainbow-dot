@@ -16,10 +16,10 @@
 
 //Recored current game status
 enum GameStatusFlag{
-	startScreen = 0,
-	menuScreen,
-	prototypeScreen,
-	gameQuit
+	START_SCREEN = 0,
+	MENU_SCREEN,
+	PROTOTYPE_SCREEN,
+	GAME_QUIT
 };
 
 #endif

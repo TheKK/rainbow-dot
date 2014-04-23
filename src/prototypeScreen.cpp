@@ -29,7 +29,7 @@ PrototypeScreen::EventHandler(SDL_Event* event)
 	switch (event->type){
 		case SDL_QUIT:
 			gameIsRunning = false;
-			gameStatusFlag = gameQuit;
+			gameStatusFlag = GAME_QUIT;
 			break;
 
 		case SDL_MOUSEMOTION:

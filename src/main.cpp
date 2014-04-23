@@ -30,29 +30,29 @@ main(int argc, char* argv[])
 
 	Window::Init("RainbowDOT", GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT);
 
-	gameStatusFlag = prototypeScreen;
+	gameStatusFlag = PROTOTYPE_SCREEN;
 
 	//Here we go!
 	while (1){
 
 		//Swtich game status
 		switch (gameStatusFlag){
-			case startScreen:
+			case START_SCREEN:
 				game = new StartScreen();
 				gameIsRunning = true;
 				break;
 
-			case menuScreen:
+			case MENU_SCREEN:
 				game = new MenuScreen();
 				gameIsRunning = true;
 				break;
 
-			case prototypeScreen:
+			case PROTOTYPE_SCREEN:
 				game = new PrototypeScreen();
 				gameIsRunning = true;
 				break;
 
-			case gameQuit:
+			case GAME_QUIT:
 				return 0;
 				break;
 		}

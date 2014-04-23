@@ -47,8 +47,7 @@ PrototypeScreen::Update()
 void
 PrototypeScreen::Render()
 {
-	SDL_SetRenderDrawColor(Window::m_Renderer, 51, 51, 51, 10);
-	SDL_RenderClear(Window::m_Renderer);
+	Window::Clear();
 
 	SDL_RenderCopy(Window::m_Renderer, m_TestPic, NULL, &m_TestPicPos);	
 

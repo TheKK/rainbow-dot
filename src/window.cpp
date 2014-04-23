@@ -38,11 +38,6 @@ Window::Init(char* windowTitle, float width, float height)
 		exit(1);
 	}
 
-
-	//Set texture filtering to linear
-	if (SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear") == false)
-		fprintf(stderr, "Warning: Linear textrue filtering not enableed\n");
-
 	//Create and setup new SDL window, and check error
 	m_Window = SDL_CreateWindow(
 			windowTitle,					//Window title
@@ -57,9 +52,9 @@ Window::Init(char* windowTitle, float width, float height)
 
 	//Create and setup new SDL renderer, and check error
 	m_Renderer = SDL_CreateRenderer(
-			m_Window,			//For which window
-			-1,				//The index of rendering driver to initialize
-			SDL_RENDERER_ACCELERATED	//SDL renderer flags
+			m_Window,						//For which window
+			-1,							//The index of rendering driver to initialize
+			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC	//SDL renderer flags
 			);
 	if (m_Renderer == NULL){
 		//fprintf( stderr, "SDL renderer error: %s\n" SDL_GetError() );

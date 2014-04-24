@@ -9,10 +9,10 @@
 
 Button::Button()
 {
-	m_ButtonOnPicture = NULL;
-	m_ButtonOffPicture = NULL;
+	m_CurrentButtonState = NULL;
 
-	m_IsSelect = false;
+	for (int i = 0; i < 3; i++ )
+		m_ButtonPicture[i] = NULL;
 }
 
 Button::~Button()
@@ -21,60 +21,29 @@ Button::~Button()
 }
 
 void
-Button::Init(string buttonOnPicture, string buttonOffPicture, int buttonPosX, int buttonPosY, int buttonWidth, int buttonHeight)
+Button::Init(string buttonNormal, string buttonHovered, string buttonPushed, SDL_Rect* buttonPos )
 {
-	m_ButtonOnPicture = SDLToolBox::LoadTexture(buttonOnPicture, Window::m_Renderer);
-	m_ButtonOffPicture = SDLToolBox::LoadTexture(buttonOffPicture, Window::m_Renderer);
+	//Load button picture for each state
+	if (buttonNormal != "")
+		m_ButtonPicture[0] = SDLToolBox::LoadTexture(buttonNormal, Window::m_Renderer);
 
-	m_ButtonPos.x = buttonPosX;
-	m_ButtonPos.y = buttonPosY;
-	m_ButtonPos.w = buttonWidth;
-	m_ButtonPos.h = buttonHeight;
-}
+	if (buttonHovered != "")
+		m_ButtonPicture[1] = SDLToolBox::LoadTexture(buttonHovered, Window::m_Renderer);
 
-void
-Button::EventHandler(SDL_Event* event)
-{
-	switch (event->type){
-		case SDL_MOUSEMOTION:
-			if (MouseHovered(event->motion.x, event->motion.y))
-				ButtonOn();
-			else
-				ButtonOff();
-			break;
-	}
-}
+	if (buttonPushed != "")
+		m_ButtonPicture[2] = SDLToolBox::LoadTexture(buttonPushed, Window::m_Renderer);
 
-void
-Button::Update()
-{
+	//Set current state as normal state
+	m_CurrentButtonState = m_ButtonPicture[0];
+
+	//Set up button position
+	m_ButtonPos = *buttonPos;
 }
 
 void
 Button::Render()
 {
-	if (m_IsSelect)
-		SDL_RenderCopy(Window::m_Renderer, m_ButtonOnPicture, NULL, &m_ButtonPos);
-	else
-		SDL_RenderCopy(Window::m_Renderer, m_ButtonOffPicture, NULL, &m_ButtonPos);
-}
-
-void
-Button::ButtonOn()
-{
-	m_IsSelect = true;
-}
-
-void
-Button::ButtonOff()
-{
-	m_IsSelect = false;
-}
-
-void
-Button::ButtonToggle()
-{
-	m_IsSelect = !m_IsSelect;
+	SDL_RenderCopy(Window::m_Renderer, m_CurrentButtonState, NULL, &m_ButtonPos);
 }
 
 bool
@@ -92,8 +61,30 @@ Button::MouseHovered(int mousePosX, int mousePosY)
 }
 
 void
+Button::ChangeState(enum ButtonState buttonState)
+{
+	switch (buttonState){
+		case BUTTON_NORMAL:
+			m_CurrentButtonState = m_ButtonPicture[0];
+			break;
+
+		case BUTTON_HOVERED:
+			m_CurrentButtonState = m_ButtonPicture[1];
+			break;
+
+		case BUTTON_PUSHED:
+			m_CurrentButtonState = m_ButtonPicture[2];
+			break;
+	}
+}
+
+void
 Button::CleanUp()
 {
-	SDL_DestroyTexture(m_ButtonOnPicture);
-	SDL_DestroyTexture(m_ButtonOffPicture);
+	m_CurrentButtonState = NULL;
+
+	for (int i = 0; i < 3; i++ ){
+		if (m_ButtonPicture[i] != NULL)
+			SDL_DestroyTexture(m_ButtonPicture[i]);
+	}
 }

@@ -15,7 +15,8 @@
 #define GAME_FPS		60
 
 //Recored current game status
-enum GameStatusFlag{
+enum GameStatusFlag
+{
 	START_SCREEN = 0,
 	MENU_SCREEN,
 	PROTOTYPE_SCREEN,

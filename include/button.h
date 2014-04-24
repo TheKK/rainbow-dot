@@ -19,6 +19,13 @@
 
 using namespace std;
 
+enum ButtonState
+{
+	BUTTON_NORMAL = 0,
+	BUTTON_HOVERED,
+	BUTTON_PUSHED
+};
+
 class Button
 {
 	public:
@@ -26,31 +33,26 @@ class Button
 		~Button();
 
 		void Init(
-				string buttonOnPicture,
-				string buttonOffPicture,
-				int buttonPosX, int buttonPosY,
-				int buttonWidth, int buttonHeight
+				string buttonNormal,
+				string buttonHovered,
+				string buttonPushed,
+				SDL_Rect* posAndSize
 			 );
 
-		void EventHandler(SDL_Event* event);
-		void Update();
 		void Render();
 
-		void ButtonOn();
-		void ButtonOff();
-		void ButtonToggle();
+		bool MouseHovered(int mousePosX, int mousePosY);
+
+		void ChangeState(enum ButtonState buttonState);
 
 	private:
-		SDL_Texture* m_ButtonOnPicture;
-		SDL_Texture* m_ButtonOffPicture;
+		//Point out what button picture we should render
+		SDL_Texture* m_CurrentButtonState;
 
+		SDL_Texture* m_ButtonPicture[3];
 		SDL_Rect m_ButtonPos;
 
-		bool m_IsSelect;
-
-		bool MouseHovered(int mousePosX, int mousePosY);
 		void CleanUp();
-
 };
 
 #endif

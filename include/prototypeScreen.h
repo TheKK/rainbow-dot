@@ -16,6 +16,7 @@
 #include "SDLToolBox.h"
 
 #include "gameStatus.h"
+#include "button.h"
 
 using namespace std;
 
@@ -35,6 +36,8 @@ class PrototypeScreen: public GameStatus
 	private:
 		SDL_Texture* m_TestPic;
 		SDL_Rect m_TestPicPos;
+
+		Button* button;
 
 		void CleanUp();
 };

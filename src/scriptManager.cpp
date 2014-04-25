@@ -7,21 +7,37 @@
 
 #include "scriptManager.h"
 
-int
-ScriptManager::GetInteger(char* filePath, char* variableName)
+lua_State* ScriptManager::L;
+
+void
+ScriptManager::NewState()
 {
 	//Create a new lua state
-	lua_State* L = luaL_newstate();
+	L = luaL_newstate();
 
 	//Load Lua build-in libs
 	luaL_openlibs(L);
+}
 
+void
+ScriptManager::CleanState()
+{
+	lua_close(L);
+}
+
+void
+ScriptManager::LoadFile(char* filePath)
+{
 	//Load Lua script and check error
 	if (luaL_dofile(L, filePath)){
 		fprintf(stderr, "Lua error: %s.\n", lua_tostring( L, -1 ));
 		exit(1);
 	}
+}
 
+int
+ScriptManager::GetInteger(char* filePath, char* variableName)
+{
 	//Load global varible into Lua stack
 	lua_getglobal(L, variableName);
 
@@ -36,18 +52,6 @@ ScriptManager::GetInteger(char* filePath, char* variableName)
 const char*
 ScriptManager::GetString(char* filePath, char* variableName)
 {
-	//Create a new lua state
-	lua_State* L = luaL_newstate();
-
-	//Load Lua build-in libs
-	luaL_openlibs(L);
-
-	//Load Lua script and check error
-	if (luaL_dofile(L, filePath)){
-		fprintf(stderr, "Lua error: %s.\n", lua_tostring(L, -1));
-		exit(1);
-	}
-
 	//Load global varible into Lua stack
 	lua_getglobal(L, variableName);
 

@@ -52,9 +52,9 @@ Window::Init(char* windowTitle, float width, float height)
 
 	//Create and setup new SDL renderer, and check error
 	m_Renderer = SDL_CreateRenderer(
-			m_Window,						//For which window
-			-1,							//The index of rendering driver to initialize
-			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC	//SDL renderer flags
+			m_Window,			//For which window
+			-1,				//The index of rendering driver to initialize
+			SDL_RENDERER_ACCELERATED	//SDL renderer flags
 			);
 	if (m_Renderer == NULL){
 		//fprintf( stderr, "SDL renderer error: %s\n" SDL_GetError() );

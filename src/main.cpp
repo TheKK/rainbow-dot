@@ -8,6 +8,8 @@
 #include <iostream>
 
 #include "global.h"
+#include "window.h"
+#include "scriptManager.h"
 
 #include "gameStatus.h"
 #include "startScreen.h"
@@ -28,9 +30,9 @@ main(int argc, char* argv[])
 
 	Timer timer;
 
-	Window::Init("RainbowDOT", GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT);
+	Window::Init(GAME_TITLE, GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT);
 
-	gameStatusFlag = PROTOTYPE_SCREEN;
+	gameStatusFlag = START_SCREEN;
 
 	//Here we go!
 	while (1){

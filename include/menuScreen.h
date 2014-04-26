@@ -34,9 +34,12 @@ class MenuScreen: public GameStatus
 		void Render();
 
 	private:
-		//Logo of KK
-		SDL_Texture* m_Logo;
-		SDL_Rect m_LogoPos;
+		SDL_Texture* m_Background;
+
+		SDL_Texture* m_TransferPic;
+		SDL_Rect m_TransferPicClip;
+
+		enum GameStatusMode gameStatusMode;
 
 		void CleanUp();
 };

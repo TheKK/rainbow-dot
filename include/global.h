@@ -15,13 +15,23 @@
 
 #define GAME_FPS		60
 
+#define Config_DebugMode	1
+
 //Recored current game status
 enum GameStatusFlag
 {
 	START_SCREEN = 0,
 	MENU_SCREEN,
+	GAME_SELECT_SCREEN,
 	PROTOTYPE_SCREEN,
 	GAME_QUIT
+};
+
+enum GameStatusMode
+{
+	GAME_TRANSFER_IN = 0,
+	GAME_NORMAL,
+	GAME_TRANSFER_OUT
 };
 
 #endif

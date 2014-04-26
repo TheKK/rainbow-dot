@@ -3,7 +3,7 @@ CXXFLAG= -Wall -std=c++11 -g
 
 SRC= $(PWD)/src
 INCLUDE= -I $(PWD)/include
-OBJ= main.o window.o timer.o SDLToolBox.o scriptManager.o button.o startScreen.o menuScreen.o prototypeScreen.o
+OBJ= main.o window.o timer.o SDLToolBox.o scriptManager.o button.o startScreen.o menuScreen.o gameSelectScreen.o prototypeScreen.o
 LIB= -lSDL2 -lSDL2main -llua5.2
 
 OUT_EXE= rainbow

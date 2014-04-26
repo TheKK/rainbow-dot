@@ -9,6 +9,8 @@
 SDL_Window* Window::m_Window;
 SDL_Renderer* Window::m_Renderer;
 
+SDL_Rect Window::m_WindowRect;
+
 float Window::m_WindowAspect;
 bool Window::m_IsWindowed;
 
@@ -61,6 +63,16 @@ Window::Init(char* windowTitle, float width, float height)
 		fprintf(stderr, "SDL renderer error: %s\n", SDL_GetError());
 		exit(1);
 	}
+
+	//Make fullscreen fit out physical screen
+	SDL_RenderSetLogicalSize(m_Renderer, width, height);
+
+	m_WindowRect = {
+		.x = 0,
+		.y = 0,
+		.w = width,
+		.h = height
+	};	
 
 	srand(time(NULL));
 

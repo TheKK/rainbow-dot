@@ -9,7 +9,7 @@
 
 PrototypeScreen::PrototypeScreen()
 {
-	m_TestPic = SDLToolBox::LoadTexture("game/pic/redSquare.bmp", Window::m_Renderer);
+	m_TestPic = SDLToolBox::LoadTexture("game/pic/transfer.bmp", Window::m_Renderer);
 	m_TestPicPos = {
 		.x = 50,
 		.y = 50,
@@ -65,7 +65,8 @@ PrototypeScreen::Render()
 	Window::Clear();
 
 	button->Render();
-	//SDL_RenderCopy(Window::m_Renderer, m_TestPic, NULL, &m_TestPicPos);	
+
+	SDL_RenderCopy(Window::m_Renderer, m_TestPic, NULL, &m_TestPicPos);	
 
 	Window::Present();
 }

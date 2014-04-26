@@ -25,20 +25,27 @@ StartScreen::~StartScreen()
 void
 StartScreen::EventHandler(SDL_Event* event)
 {
-	switch (event->type){
+	switch (event->type) {
 		case SDL_QUIT:
 			gameIsRunning = false;
 			gameStatusFlag = GAME_QUIT;
 			break;
 
 		case SDL_KEYDOWN:
-			switch (event->key.keysym.sym){
+			switch (event->key.keysym.sym) {
 				case SDLK_RETURN:
 				case SDLK_ESCAPE:
 					gameIsRunning = false;
 					gameStatusFlag = MENU_SCREEN;
 					break;
 			}
+
+		case SDL_MOUSEBUTTONDOWN:
+			if (event->button.button == SDL_BUTTON_LEFT) {
+				gameIsRunning = false;
+				gameStatusFlag = MENU_SCREEN;
+			}
+			break;
 	}
 }
 
@@ -83,4 +90,6 @@ void
 StartScreen::CleanUp()
 {
 	SDL_DestroyTexture(m_Logo);
+
+	m_Logo = NULL;
 }

@@ -28,9 +28,12 @@ class Window
 
 		static SDL_Window* m_Window;
 		static SDL_Renderer* m_Renderer;
+
+		static SDL_Rect m_WindowRect;
 	private:
 
 		static float m_WindowAspect;
+
 
 		static bool m_IsWindowed;
 };

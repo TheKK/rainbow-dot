@@ -9,7 +9,7 @@
 #define GAMESTATUS_H
 
 #include <iostream>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 using namespace std;
 

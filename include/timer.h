@@ -9,7 +9,7 @@
 #define TIMER_H
 
 #include <iostream>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 class Timer
 {

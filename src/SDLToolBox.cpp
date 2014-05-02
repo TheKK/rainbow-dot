@@ -17,7 +17,7 @@ SDLToolBox::LoadTexture(string filename, SDL_Renderer* renderer)
 
 	loadedImage = SDL_LoadBMP((basePath + filename).c_str());
 	if (loadedImage == NULL){
-		fprintf(stderr, "SDL error: %s\n", SDL_GetError());
+		fprintf(stderr, "SDL error while load image file: %s\n", SDL_GetError());
 		exit(1);
 	}
 
@@ -26,7 +26,7 @@ SDLToolBox::LoadTexture(string filename, SDL_Renderer* renderer)
 		
 	optimizedImage = SDL_CreateTextureFromSurface(renderer, loadedImage);
 	if (optimizedImage == NULL){
-		fprintf(stderr, "SDL error: %s\n", SDL_GetError());
+		fprintf(stderr, "SDL error while conver surface into texture: %s\n", SDL_GetError());
 		exit(1);
 	}
 

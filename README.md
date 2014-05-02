@@ -14,6 +14,8 @@ This repo will recored all my process before I make it playable and fun stuff.
 
 ##Build
 
+For any *nix system, please install pkg-config before compiling.
+
 * GNU/Linux
 
 `make`

@@ -9,7 +9,7 @@
 #define WINDOW_H
 
 #include <iostream>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 using namespace std;
 
@@ -19,7 +19,7 @@ class Window
 		Window();
 		~Window();
 
-		static bool Init(char* windowTitle, float width, float height);
+		static bool Init(const char* windowTitle, int width, int height);
 
 		static void Clear();
 		static void Present();

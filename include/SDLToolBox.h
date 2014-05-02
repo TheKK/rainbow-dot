@@ -11,7 +11,7 @@
 #include <iostream>
 #include <cstdio>
 #include <string>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 
 #include "global.h"

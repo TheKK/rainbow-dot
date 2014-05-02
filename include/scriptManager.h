@@ -12,7 +12,7 @@
 #include <cstdlib>
 
 extern "C" {
-#include <lua5.2/lua.hpp>
+#include <lua.hpp>
 }
 
 using namespace std;

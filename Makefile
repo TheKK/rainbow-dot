@@ -2,9 +2,17 @@ CXX= g++
 CXXFLAG= -Wall -std=c++11 -g
 
 SRC= $(PWD)/src
+
+# Include flags
 INCLUDE= -I $(PWD)/include
+INCLUDE+= $(shell pkg-config --cflags sdl2)
+INCLUDE+= $(shell pkg-config --cflags lua)
+
+# Libs flags
+LIB+= $(shell pkg-config --libs sdl2)
+LIB+= $(shell pkg-config --libs lua)
+
 OBJ= main.o window.o timer.o SDLToolBox.o scriptManager.o button.o startScreen.o menuScreen.o gameSelectScreen.o prototypeScreen.o
-LIB= -lSDL2 -lSDL2main -llua5.2
 
 OUT_EXE= rainbow
 

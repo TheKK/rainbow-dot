@@ -29,11 +29,8 @@ Window::~Window()
 }
 
 bool
-Window::Init(char* windowTitle, float width, float height)
+Window::Init(const char* windowTitle, int width, int height)
 {
-	//Recored window aspect
-	m_WindowAspect = width / height;
-
 	//Initialize SDL
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0){
 		fprintf(stderr, "SDL window error: %s\n", SDL_GetError());

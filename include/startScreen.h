@@ -11,7 +11,7 @@
 #define LOGO_PATH	"game/pic/logo.bmp"
 
 #include <iostream>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 #include "global.h"
 #include "window.h"

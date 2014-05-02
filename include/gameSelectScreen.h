@@ -9,7 +9,7 @@
 #define GAMESELECTSCREEN_H
 
 #include <iostream>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 #include "global.h"
 #include "window.h"

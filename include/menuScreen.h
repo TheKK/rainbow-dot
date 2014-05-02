@@ -36,6 +36,9 @@ class MenuScreen: public GameStatus
 	private:
 		SDL_Texture* m_Background;
 
+		int m_CurrentTitle;
+		SDL_Texture* m_Title[3];
+
 		void CleanUp();
 };
 

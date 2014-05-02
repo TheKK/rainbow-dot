@@ -14,7 +14,7 @@ LIB+= $(shell pkg-config --libs sdl2)
 LIB+= $(shell pkg-config --libs SDL2_image)
 LIB+= $(shell pkg-config --libs lua)
 
-OBJ= main.o window.o timer.o SDLToolBox.o scriptManager.o button.o startScreen.o menuScreen.o gameSelectScreen.o prototypeScreen.o
+OBJ= main.o window.o timer.o SDLToolBox.o scriptManager.o button.o startScreen.o menuScreen.o gameSelectScreen.o mainGameScreen.o prototypeScreen.o
 
 OUT_EXE= rainbow
 

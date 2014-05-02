@@ -15,6 +15,7 @@
 #include "startScreen.h"
 #include "menuScreen.h"
 #include "gameSelectScreen.h"
+#include "mainGameScreen.h"
 #include "prototypeScreen.h"
 #include "timer.h"
 
@@ -37,8 +38,9 @@ main(int argc, char* argv[])
 
 	Window::Init(GAME_TITLE, GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT);
 
-	gameStatusFlag = START_SCREEN;
+	//gameStatusFlag = START_SCREEN;
 	//gameStatusFlag = PROTOTYPE_SCREEN;
+	gameStatusFlag = MAIN_GAME_SCREEN;
 
 	//Here we go!
 	while (1){
@@ -57,6 +59,11 @@ main(int argc, char* argv[])
 
 			case GAME_SELECT_SCREEN:
 				game = new GameSelectScreen();
+				gameIsRunning = true;
+				break;
+
+			case MAIN_GAME_SCREEN:
+				game = new MainGameScreen();
 				gameIsRunning = true;
 				break;
 

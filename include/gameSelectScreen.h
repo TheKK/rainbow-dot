@@ -35,11 +35,6 @@ class GameSelectScreen: public GameStatus
 	private:
 		SDL_Texture* m_Background;
 
-		SDL_Texture* m_TransferPic;
-		SDL_Rect m_TransferPicClip;
-
-		enum GameStatusMode gameStatusMode;
-
 		void CleanUp();
 };
 

@@ -37,8 +37,8 @@ main(int argc, char* argv[])
 
 	Window::Init(GAME_TITLE, GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT);
 
-	//gameStatusFlag = START_SCREEN;
-	gameStatusFlag = PROTOTYPE_SCREEN;
+	gameStatusFlag = START_SCREEN;
+	//gameStatusFlag = PROTOTYPE_SCREEN;
 
 	//Here we go!
 	while (1){

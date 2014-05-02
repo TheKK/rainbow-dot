@@ -8,7 +8,7 @@
 #ifndef STARTSCREEN_H
 #define STARTSCREEN_H
 
-#define LOGO_PATH	"game/pic/logo.bmp"
+#define LOGO_PATH	"game/pic/startScreenLogo.png"
 
 #include <iostream>
 #include <SDL.h>

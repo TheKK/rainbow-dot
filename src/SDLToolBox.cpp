@@ -7,6 +7,19 @@
 
 #include "SDLToolBox.h"
 
+SDLToolBox::SDLToolBox()
+{
+	if (!IMG_Init(IMG_INIT_PNG)) {
+		fprintf(stderr, "Error while init SDL_image: %s\n", IMG_GetError());
+		exit(1);
+	}
+}
+
+SDLToolBox::~SDLToolBox()
+{
+	IMG_Quit();
+}
+
 SDL_Texture*
 SDLToolBox::LoadTexture(string filename, SDL_Renderer* renderer)
 {
@@ -15,9 +28,9 @@ SDLToolBox::LoadTexture(string filename, SDL_Renderer* renderer)
 
 	string basePath = SDL_GetBasePath();
 
-	loadedImage = SDL_LoadBMP((basePath + filename).c_str());
+	loadedImage = IMG_Load((basePath + filename).c_str());
 	if (loadedImage == NULL){
-		fprintf(stderr, "SDL error while load image file: %s\n", SDL_GetError());
+		fprintf(stderr, "SDL error while loading \"%s\": %s\n", filename.c_str(), SDL_GetError());
 		exit(1);
 	}
 
@@ -26,7 +39,7 @@ SDLToolBox::LoadTexture(string filename, SDL_Renderer* renderer)
 		
 	optimizedImage = SDL_CreateTextureFromSurface(renderer, loadedImage);
 	if (optimizedImage == NULL){
-		fprintf(stderr, "SDL error while conver surface into texture: %s\n", SDL_GetError());
+		fprintf(stderr, "SDL error while convering surface into texture: %s\n", SDL_GetError());
 		exit(1);
 	}
 

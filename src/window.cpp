@@ -11,13 +11,11 @@ SDL_Renderer* Window::m_Renderer;
 
 SDL_Rect Window::m_WindowRect;
 
-float Window::m_WindowAspect;
 bool Window::m_IsWindowed;
 
 Window::Window()
 {
 	m_IsWindowed = true;
-	m_WindowAspect = 0;
 
 	m_Window = NULL;
 	m_Renderer = NULL;
@@ -61,7 +59,7 @@ Window::Init(const char* windowTitle, int width, int height)
 		exit(1);
 	}
 
-	//Make fullscreen fit out physical screen
+	//Make fullscreen fit physical screen
 	SDL_RenderSetLogicalSize(m_Renderer, width, height);
 
 	m_WindowRect = {
@@ -84,9 +82,22 @@ Window::Clear()
 }
 
 void
-Window::Present ()
+Window::Present()
 {
 	SDL_RenderPresent(m_Renderer);
+}
+
+void
+Window::Resize(int width, int height)
+{
+	SDL_SetWindowSize(m_Window, width, height);
+	SDL_RenderSetLogicalSize(m_Renderer, width, height);
+	m_WindowRect = {
+		.x = 0,
+		.y = 0,
+		.w = width,
+		.h = height
+	};	
 }
 
 void

@@ -24,17 +24,18 @@ class Window
 		static void Clear();
 		static void Present();
 
+		static void Resize(int width, int height);
+
 		static void Quit();
 
+		//SDL_Window and SDL_Renderer
 		static SDL_Window* m_Window;
 		static SDL_Renderer* m_Renderer;
 
+		//Store game window's size
 		static SDL_Rect m_WindowRect;
+
 	private:
-
-		static float m_WindowAspect;
-
-
 		static bool m_IsWindowed;
 };
 

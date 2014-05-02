@@ -9,7 +9,7 @@
 
 PrototypeScreen::PrototypeScreen()
 {
-	m_TestPic = SDLToolBox::LoadTexture("game/pic/transfer.bmp", Window::m_Renderer);
+	m_TestPic = SDLToolBox::LoadTexture("game/pic/test.png", Window::m_Renderer);
 	m_TestPicPos = {
 		.x = 50,
 		.y = 50,
@@ -24,8 +24,8 @@ PrototypeScreen::PrototypeScreen()
 		.h = 50
 	};
 
-	button = new Button();
-	button->Init("game/pic/buttonOnTest.bmp", "game/pic/buttonOffTest.bmp", "", &buttonPos);
+	//button = new Button();
+	//button->Init("game/pic/buttonOnTest.bmp", "game/pic/buttonOffTest.bmp", "", &buttonPos);
 }
 
 PrototypeScreen::~PrototypeScreen()
@@ -46,11 +46,16 @@ PrototypeScreen::EventHandler(SDL_Event* event)
 			m_TestPicPos.x = (event->motion.x - m_TestPicPos.w / 2);
 			m_TestPicPos.y = (event->motion.y - m_TestPicPos.h / 2);
 
-			if (button->MouseHovered(event->motion.x, event->motion.y))
-				button->ChangeState(BUTTON_HOVERED);
-			else
-				button->ChangeState(BUTTON_NORMAL);
-			break;
+			//if (button->MouseHovered(event->motion.x, event->motion.y))
+				//button->ChangeState(BUTTON_HOVERED);
+			//else
+				//button->ChangeState(BUTTON_NORMAL);
+			//break;
+
+		//case SDL_MOUSEBUTTONDOWN:
+			//if (button->MouseHovered(event->button.x, event->button.y) && event->button.button == SDL_BUTTON_LEFT) {
+				//Window::Resize(1000, 1000);
+			//}
 	}
 }
 
@@ -64,7 +69,7 @@ PrototypeScreen::Render()
 {
 	Window::Clear();
 
-	button->Render();
+	//button->Render();
 
 	SDL_RenderCopy(Window::m_Renderer, m_TestPic, NULL, &m_TestPicPos);	
 
@@ -76,5 +81,5 @@ PrototypeScreen::CleanUp()
 {
 	SDL_DestroyTexture(m_TestPic);
 
-	delete button;
+	//delete button;
 }

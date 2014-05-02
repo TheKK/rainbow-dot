@@ -12,6 +12,7 @@
 #include <cstdio>
 #include <string>
 #include <SDL.h>
+#include <SDL_image.h>
 
 
 #include "global.h"
@@ -21,8 +22,8 @@ using namespace std;
 class SDLToolBox
 {
 	public:
-		SDLToolBox(){};
-		~SDLToolBox(){};
+		SDLToolBox();
+		~SDLToolBox();
 
 		static SDL_Texture* LoadTexture(string fileName, SDL_Renderer* renderer);
 };

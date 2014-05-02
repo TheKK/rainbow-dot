@@ -15,7 +15,7 @@
 
 #define GAME_FPS		60
 
-#define Config_DebugMode	1
+//#define Config_DebugMode	1
 
 //Recored current game status
 enum GameStatusFlag

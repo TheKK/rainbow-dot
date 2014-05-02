@@ -37,8 +37,8 @@ main(int argc, char* argv[])
 
 	Window::Init(GAME_TITLE, GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT);
 
-	gameStatusFlag = START_SCREEN;
-	//gameStatusFlag = PROTOTYPE_SCREEN;
+	//gameStatusFlag = START_SCREEN;
+	gameStatusFlag = PROTOTYPE_SCREEN;
 
 	//Here we go!
 	while (1){
@@ -76,7 +76,8 @@ main(int argc, char* argv[])
 
 			while (SDL_PollEvent(&event)) {
 					game->EventHandler(&event);
-#ifdef Config_DebugMode
+
+					#ifdef Config_DebugMode
 					if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_F12) {
 						if (gameStatusFlag == PROTOTYPE_SCREEN)
 							gameStatusFlag = previousFlag;
@@ -86,7 +87,7 @@ main(int argc, char* argv[])
 						}
 						gameIsRunning = false;
 					}
-#endif
+					#endif
 			}
 
 			game->Update();

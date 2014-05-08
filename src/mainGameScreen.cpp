@@ -10,6 +10,7 @@
 MainGameScreen::MainGameScreen()
 {
 	player = new Player();
+	enemy = new Enemy();
 
 	//Init special flags
 	startTransfrom = false;
@@ -31,12 +32,15 @@ MainGameScreen::EventHandler(SDL_Event* event)
 	}
 
 	player->EventHandler(event);
+	enemy->EventHandler(event);
 }
 
 void
 MainGameScreen::Update()
 {
 	player->Update();
+
+	enemy->Update();
 
 	//Transform window
 	if (startTransfrom) {
@@ -62,6 +66,9 @@ MainGameScreen::Render()
 	//Render player
 	player->Render();
 
+	//Render enemy
+	enemy->Render();
+
 	Window::Present();
 }
 
@@ -69,4 +76,8 @@ void
 MainGameScreen::CleanUp()
 {
 	delete player;
+	player = NULL;
+
+	delete enemy;
+	enemy = NULL;
 }

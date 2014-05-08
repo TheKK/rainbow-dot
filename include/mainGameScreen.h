@@ -17,6 +17,7 @@
 
 #include "gameStatus.h"
 #include "player.h"
+#include "enemy.h"
 
 using namespace std;
 
@@ -35,10 +36,12 @@ class MainGameScreen: public GameStatus
 
 	private:
 		Player* player;
-		void CleanUp();
+		Enemy* enemy;
 
 		//Event flag
 		bool startTransfrom;
+
+		void CleanUp();
 };
 
 #endif

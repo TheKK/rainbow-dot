@@ -30,7 +30,7 @@ SDLToolBox::LoadTexture(string filename, SDL_Renderer* renderer)
 
 	loadedImage = IMG_Load((basePath + filename).c_str());
 	if (loadedImage == NULL){
-		fprintf(stderr, "SDL error while loading \"%s\": %s\n", filename.c_str(), SDL_GetError());
+		fprintf(stderr, "SDL error while loading \"%s\": %s\n", filename.c_str(), IMG_GetError());
 		exit(1);
 	}
 

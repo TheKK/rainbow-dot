@@ -16,6 +16,7 @@
 #include "SDLToolBox.h"
 
 #include "gameStatus.h"
+#include "player.h"
 
 using namespace std;
 
@@ -33,31 +34,7 @@ class MainGameScreen: public GameStatus
 		void Render();
 
 	private:
-		//Player parameters
-		SDL_Texture* player;
-		SDL_Rect playerPos;
-
-		int playerMoveSpeed;
-
-		int playerVelX;
-		int playerVelY;
-
-		//Bullet parameter
-		SDL_Texture* bullet;
-		SDL_Rect bulletPos;
-
-		int nextToShot;
-
-		int bulletMoveSpeed;
-
-		bool bulletIsShot;
-
-		//Keyborad status
-		bool upIsPushed;
-		bool downIsPushed;
-		bool leftIsPushed;
-		bool rightIsPushed;
-
+		Player* player;
 		void CleanUp();
 
 		//Event flag

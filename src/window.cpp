@@ -6,6 +6,8 @@
  */
 
 #include "window.h"
+
+//Static variable members
 SDL_Window* Window::m_Window;
 SDL_Renderer* Window::m_Renderer;
 

@@ -6,11 +6,5 @@
    [
    ]]
 
---StartScreen
-
---StartScreen = {
-	--logoPath = 'game/pic/startScreenLogo.png'
---}
-
+--StartScreen settings
 	logoPath = 'game/pic/startScreenLogo.png'
-	logoPath = 124

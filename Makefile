@@ -1,3 +1,9 @@
+ #
+ # Author: KK <thumbd03803@gmail.com>
+ #
+ # Makefile
+ #
+
 CXX= g++
 CXXFLAG= -Wall -std=c++11 -g
 

@@ -38,15 +38,15 @@ main(int argc, char* argv[])
 
 	Window::Init(GAME_TITLE, GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT);
 
-	//gameStatusFlag = START_SCREEN;
+	gameStatusFlag = START_SCREEN;
 	//gameStatusFlag = PROTOTYPE_SCREEN;
-	gameStatusFlag = MAIN_GAME_SCREEN;
+	//gameStatusFlag = MAIN_GAME_SCREEN;
 
 	//Here we go!
-	while (1){
+	while (1) {
 
 		//Swtich game status
-		switch (gameStatusFlag){
+		switch (gameStatusFlag) {
 			case START_SCREEN:
 				game = new StartScreen();
 				gameIsRunning = true;
@@ -78,7 +78,7 @@ main(int argc, char* argv[])
 		}
 
 		//Main game loop
-		while (gameIsRunning){
+		while (gameIsRunning) {
 			timer.Start();
 
 			while (SDL_PollEvent(&event)) {

@@ -9,7 +9,10 @@
 
 StartScreen::StartScreen()
 {
-	m_Logo = SDLToolBox::LoadTexture(LOGO_PATH, Window::m_Renderer);
+	ScriptManager::NewState((char*)"game/script/gameSetting.lua");
+
+	char* logoPath = (char*)ScriptManager::GetGlobalString((char*)"logoPath");
+	m_Logo = SDLToolBox::LoadTexture(logoPath, Window::m_Renderer);
 
 	m_LogoPos.x = 0;
 	m_LogoPos.y = 0;
@@ -39,6 +42,7 @@ StartScreen::EventHandler(SDL_Event* event)
 					gameStatusFlag = MENU_SCREEN;
 					break;
 			}
+			break;
 
 		case SDL_MOUSEBUTTONDOWN:
 			if (event->button.button == SDL_BUTTON_LEFT) {
@@ -61,7 +65,7 @@ StartScreen::Update()
 		;
 	else if (frameCount <= 150)
 		alpha = 255 - (255 * (frameCount - 90) / 60);
-	else if (frameCount > 150){
+	else if (frameCount > 150) {
 		gameIsRunning = false;
 		gameStatusFlag = MENU_SCREEN;
 	}
@@ -90,6 +94,7 @@ void
 StartScreen::CleanUp()
 {
 	SDL_DestroyTexture(m_Logo);
-
 	m_Logo = NULL;
+
+	ScriptManager::CloseState();
 }

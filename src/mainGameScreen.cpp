@@ -39,16 +39,14 @@ void
 MainGameScreen::Update()
 {
 	player->Update();
-
 	enemy->Update();
 
 	//Transform window
 	if (startTransfrom) {
 		static int frameCount = 0;
 
-		if (frameCount++ < 140) {
+		if (frameCount++ < 140) 
 			Window::Resize(GAME_WINDOW_WIDTH - frameCount, GAME_WINDOW_HEIGHT + frameCount);
-		}
 		else
 			startTransfrom = false;
 	}
@@ -63,10 +61,8 @@ MainGameScreen::Render()
 	SDL_SetRenderDrawColor(Window::m_Renderer, 0xff, 0xff, 0xff, 0xcc);
 	SDL_RenderFillRect(Window::m_Renderer, &Window::m_WindowRect);
 
-	//Render player
+	//Render other objects
 	player->Render();
-
-	//Render enemy
 	enemy->Render();
 
 	Window::Present();

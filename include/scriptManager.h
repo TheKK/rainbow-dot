@@ -23,13 +23,13 @@ class ScriptManager
 		ScriptManager(){};
 		~ScriptManager(){};
 
-		static void NewState();
-		static void CleanState();
+		static void NewState(char* filePath);
+		static void CloseState();
 
 		static void LoadFile(char* filePath);
 
-		static int GetInteger(char* filePath, char* variableName);
-		static const char* GetString(char* filePath, char* variableName);
+		static int GetGlobalInteger(char* variableName);
+		static const char* GetGlobalString(char* variableName);
 
 	private:
 		static lua_State* L;

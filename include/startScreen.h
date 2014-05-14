@@ -1,20 +1,19 @@
 /*
  * Author: KK <thumbd03803@gmail.com>
  *
- * startScreen.h 
+ * startScreen.h
  *
  */
 
 #ifndef STARTSCREEN_H
 #define STARTSCREEN_H
 
-#define LOGO_PATH	"game/pic/startScreenLogo.png"
-
 #include <iostream>
 #include <SDL.h>
 
 #include "global.h"
 #include "window.h"
+#include "scriptManager.h"
 #include "SDLToolBox.h"
 
 #include "gameStatus.h"

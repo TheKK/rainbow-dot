@@ -17,7 +17,7 @@ ScriptManager::NewState(char* filePath)
 
 	//Load Lua script and check error
 	if (luaL_dofile(L, filePath)) {
-		fprintf(stderr, "Lua error: %s.\n", lua_tostring( L, -1 ));
+		fprintf(stderr, "Lua error: %s.\n", lua_tostring(L, -1));
 		exit(1);
 	}
 }

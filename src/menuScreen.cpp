@@ -32,6 +32,11 @@ MenuScreen::EventHandler(SDL_Event* event)
 			gameIsRunning = false;
 			gameStatusFlag = GAME_QUIT;
 			break;
+
+		case SDL_MOUSEBUTTONDOWN:
+			gameIsRunning = false;
+			gameStatusFlag = MAIN_GAME_SCREEN;
+			break;
 	}
 }
 

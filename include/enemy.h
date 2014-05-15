@@ -10,26 +10,17 @@
 
 #include <iostream>
 #include <cmath>
+#include <cstdio>
 #include <vector>
 #include <SDL.h>
+#include <lua.hpp>
 
 #include "global.h"
 #include "window.h"
 #include "SDLToolBox.h"
+#include "scriptManager.h"
 
 using namespace std;
-
-typedef struct bullet* bulletPtr;
-struct bullet
-{
-	int startX;
-	int startY;
-	float uniVectorX;
-	float uniVectorY;
-	SDL_Rect pos;
-	int frameCount = 0;
-	struct bullet* next = NULL;
-};
 
 class Enemy
 {
@@ -41,18 +32,15 @@ class Enemy
 		void Update();
 		void Render();
 
+		const SDL_Rect* GetRect();
 	private:
 		//Enemy parameters
 		SDL_Texture* enemyPic;
 		SDL_Rect enemyPos;
 
-		SDL_Texture* bulletPic;
-		vector<struct bullet> bulletList;
-
-		bulletPtr firstBullet;
-
-		int mouseX;
-		int mouseY;
+		//Lua state
+		//lua_State* bulletGenerator;
+		lua_State* enemyMovePathScript;
 
 		void CleanUp();
 };

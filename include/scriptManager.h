@@ -10,10 +10,7 @@
 
 #include <iostream>
 #include <cstdlib>
-
-extern "C" {
 #include <lua.hpp>
-}
 
 using namespace std;
 
@@ -31,7 +28,6 @@ class ScriptManager
 		static int GetGlobalInteger(char* variableName);
 		static const char* GetGlobalString(char* variableName);
 
-	private:
 		static lua_State* L;
 };
 

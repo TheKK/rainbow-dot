@@ -9,6 +9,9 @@
 
 MainGameScreen::MainGameScreen()
 {
+	//Open new lua state
+	ScriptManager::NewState((char*)"game/script/mainGameScreen.lua");
+
 	player = new Player();
 	enemy = new Enemy();
 
@@ -45,10 +48,17 @@ MainGameScreen::Update()
 	if (startTransfrom) {
 		static int frameCount = 0;
 
-		if (frameCount++ < 140) 
+		if (frameCount++ < 140)
 			Window::Resize(GAME_WINDOW_WIDTH - frameCount, GAME_WINDOW_HEIGHT + frameCount);
 		else
 			startTransfrom = false;
+	}
+
+	//If Enemy is out of window
+	if (SDL_HasIntersection(&Window::m_WindowRect, enemy->GetRect()) == SDL_FALSE) {
+		delete enemy;
+		enemy = new Enemy();
+		enemy->Update();
 	}
 }
 
@@ -76,4 +86,7 @@ MainGameScreen::CleanUp()
 
 	delete enemy;
 	enemy = NULL;
+
+	//Clean lua state
+	ScriptManager::CloseState();
 }

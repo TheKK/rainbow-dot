@@ -34,12 +34,18 @@ class MainGameScreen: public GameStatus
 		void Update();
 		void Render();
 
+		//For lua to call
+		static void AddBulletToPoll();
+
 	private:
 		Player* player;
 		Enemy* enemy;
 
 		//Event flag
 		bool startTransfrom;
+
+		//Bullet pool
+		//vector<Bullet> bulletPoll;
 
 		void CleanUp();
 };

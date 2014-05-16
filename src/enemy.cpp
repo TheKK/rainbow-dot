@@ -7,7 +7,7 @@
 
 #include "enemy.h"
 
-Enemy::Enemy()
+Enemy::Enemy(char* enemyCode)
 {
 	//Init player parameters
 	enemyPic = SDLToolBox::LoadTexture("game/pic/mainGameScreenEnemy.png", Window::m_Renderer);
@@ -18,7 +18,7 @@ Enemy::Enemy()
 		.h = 15
 	};
 
-	lua_getglobal(ScriptManager::L, "testEnemy");
+	lua_getglobal(ScriptManager::L, enemyCode);
 	if (lua_pcall(ScriptManager::L, 0, 1, 0) != 0) {
 		fprintf(stderr, "Lua error while run function\n");
 		exit(1);

@@ -25,7 +25,7 @@ using namespace std;
 class Enemy
 {
 	public:
-		Enemy();
+		Enemy(char* enemyCode);
 		~Enemy();
 
 		void EventHandler(SDL_Event* event);

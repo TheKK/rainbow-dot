@@ -40,6 +40,7 @@ class MainGameScreen: public GameStatus
 	private:
 		Player* player;
 		Enemy* enemy;
+		Enemy* enemy2;
 
 		//Event flag
 		bool startTransfrom;

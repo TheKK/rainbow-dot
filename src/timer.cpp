@@ -16,28 +16,34 @@ Timer::Timer()
 	m_IsPuased = false;
 }
 
-void Timer::Start()
+Timer::~Timer()
+{
+}
+
+void
+Timer::Start()
 {
 	m_IsStarted = true;
-
 	m_IsPuased = false;
 	
 	//Get the start ticks
 	m_StartTicks = SDL_GetTicks();
 }
 
-void Timer::Pause()
+void
+Timer::Pause()
 {
-	if ((m_IsStarted == true) && (m_IsPuased == false)){
+	if ((m_IsStarted == true) && (m_IsPuased == false)) {
 		m_IsPuased = true;
 	
 		m_PauseTicks = SDL_GetTicks() - m_StartTicks;
 	}
 }
 
-void Timer::Unpause()
+void
+Timer::Unpause()
 {
-	if ((m_IsPuased == true)){
+	if ((m_IsPuased == true)) {
 		m_IsPuased = false;
 	
 		m_StartTicks = SDL_GetTicks() - m_PauseTicks;
@@ -46,9 +52,10 @@ void Timer::Unpause()
 	}
 }
 		
-int Timer::GetTicks()
+int
+Timer::GetTicks()
 {
-	if (m_IsStarted == true){
+	if (m_IsStarted == true) {
 		if (m_IsPuased == false)
 			return SDL_GetTicks() - m_StartTicks;
 		else
@@ -58,36 +65,14 @@ int Timer::GetTicks()
 	return 0;
 }
 
-bool Timer::IsPaused()	
+bool
+Timer::IsPaused()	
 {
 	return m_IsPuased;
 }
 
-bool Timer::IsStarted()	
+bool
+Timer::IsStarted()	
 {
 	return m_IsStarted;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	

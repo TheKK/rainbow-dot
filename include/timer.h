@@ -15,6 +15,7 @@ class Timer
 {
 	public:
 		Timer();
+		~Timer();
 
 		//Timer functions
 		void Start();

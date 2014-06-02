@@ -100,7 +100,7 @@ main(int argc, char* argv[])
 			game->Update();
 			game->Render();	
 
-			if(timer.GetTicks() < (1000 / GAME_FPS))
+			if (timer.GetTicks() < (1000 / GAME_FPS))
 				SDL_Delay((1000 / GAME_FPS) - timer.GetTicks());
 		}
 

@@ -11,7 +11,7 @@ This repo will recored all my process before I make it playable and fun stuff.
 
 Screenshot
 ----------
-![Screenshot](README/screenshot.png)
+![Screenshot](README/screenshot.gif)
 
 I want to make a 2d scroolling shooting game, and this is my early designed of game title.
 It's also the only part you would think this is a game...

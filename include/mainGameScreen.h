@@ -36,7 +36,6 @@ class MainGameScreen: public GameStatus
 
 		//For lua to call
 		static void AddBulletToPoll();
-
 	private:
 		Player* player;
 		Enemy* enemy;

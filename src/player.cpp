@@ -10,13 +10,14 @@
 Player::Player()
 {
 	//Init player parameters
-	playerPic = SDLToolBox::LoadTexture("game/pic/mainGameScreenPlayer.png", Window::m_Renderer);
-	playerPos = {
-		.x = 50,
-		.y = 50,
-		.w = 15,
-		.h = 15
-	};
+	playerTex = new Texture("game/pic/mainGameScreenPlayer.png", Window::m_Renderer);
+	playerTex->SetPositionAndSize(50, 50, 15, 15);
+
+	//Init control flags
+	upIsPushed = false;
+	downIsPushed = false;
+	leftIsPushed = false;
+	rightIsPushed = false;
 
 	playerMoveSpeed = 1;
 }
@@ -73,27 +74,27 @@ Player::Update()
 	if (upIsPushed && downIsPushed)
 		;
 	else if (upIsPushed)
-		playerPos.y += -playerMoveSpeed;
+		playerTex->Move(0, -playerMoveSpeed);
 	else if (downIsPushed)
-		playerPos.y += playerMoveSpeed;
+		playerTex->Move(0, playerMoveSpeed);
 
 	if (leftIsPushed && rightIsPushed)
 		;
 	else if (leftIsPushed)
-		playerPos.x += -playerMoveSpeed;
+		playerTex->Move(-playerMoveSpeed, 0);
 	else if (rightIsPushed)
-		playerPos.x += playerMoveSpeed;
+		playerTex->Move(playerMoveSpeed, 0);
 }
 
 void
 Player::Render()
 {
-	SDL_RenderCopy(Window::m_Renderer, playerPic, NULL, &playerPos);
+	playerTex->Render();
 }
 
 void
 Player::CleanUp()
 {
-	SDL_DestroyTexture(playerPic);
-	playerPic = NULL;
+	delete playerTex;
+	playerTex = NULL;
 }

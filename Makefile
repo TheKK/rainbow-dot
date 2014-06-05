@@ -4,7 +4,7 @@
  # Makefile
  #
 
-CXX = g++
+CXX = clang++
 CXXFLAG = -Wall -std=c++11 -g
 
 SRC_PATH = $(PWD)/src
@@ -23,7 +23,7 @@ LIB += $(shell pkg-config --libs lua)
 
 # Object files
 OBJ_PATH = $(PWD)/obj
-OBJ = main.o window.o timer.o SDLToolBox.o scriptManager.o button.o startScreen.o menuScreen.o gameSelectScreen.o mainGameScreen.o prototypeScreen.o player.o enemy.o
+OBJ = main.o window.o timer.o SDLToolBox.o texture.o scriptManager.o button.o startScreen.o menuScreen.o gameSelectScreen.o mainGameScreen.o prototypeScreen.o player.o enemy.o
 
 OUT_EXE= rainbow
 

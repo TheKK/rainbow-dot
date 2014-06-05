@@ -6,14 +6,14 @@
  */
 
 #ifndef PLAYER_H
-#define PlAYER_H
+#define PLAYER_H
 
 #include <iostream>
 #include <SDL.h>
 
 #include "global.h"
 #include "window.h"
-#include "SDLToolBox.h"
+#include "texture.h"
 
 class Player
 {
@@ -24,16 +24,11 @@ class Player
 		void EventHandler(SDL_Event* event);
 		void Update();
 		void Render();
-
 	private:
-		//Player parameters
-		SDL_Texture* playerPic;
-		SDL_Rect playerPos;
+		//Player texture
+		Texture* playerTex;
 
 		int playerMoveSpeed;
-
-		int playerVelX;
-		int playerVelY;
 
 		//Keyborad status
 		bool upIsPushed;

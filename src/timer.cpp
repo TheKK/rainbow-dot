@@ -43,12 +43,12 @@ Timer::Pause()
 void
 Timer::Unpause()
 {
-	if ((m_IsPuased == true)) {
+	if (m_IsPuased == true) {
 		m_IsPuased = false;
-	
-		m_StartTicks = SDL_GetTicks() - m_PauseTicks;
 
+		m_StartTicks = SDL_GetTicks() - m_PauseTicks;
 		m_PauseTicks = 0;
+
 	}
 }
 		

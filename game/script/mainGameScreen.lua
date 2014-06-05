@@ -20,6 +20,7 @@ function testEnemy1()
 		end
 	end
 	)
+
 	return co
 end
 

@@ -15,5 +15,8 @@
 # Vim swap files
 *.swp
 
+# Ctags
+tags
+
 # Binary file
 rainbow

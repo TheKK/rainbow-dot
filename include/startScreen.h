@@ -13,9 +13,8 @@
 
 #include "global.h"
 #include "window.h"
-#include "scriptManager.h"
-#include "SDLToolBox.h"
 
+#include "texture.h"
 #include "gameStatus.h"
 
 using namespace std;
@@ -35,8 +34,7 @@ class StartScreen: public GameStatus
 
 	private:
 		//Logo of KK
-		SDL_Texture* m_Logo;
-		SDL_Rect m_LogoPos;
+		Texture* logoPic_;
 
 		void CleanUp();
 };

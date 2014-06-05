@@ -7,25 +7,21 @@
 
 #include "enemy.h"
 
-Enemy::Enemy(char* enemyCode)
+Enemy::Enemy(char* enemyType)
 {
 	//Init player parameters
-	enemyPic = SDLToolBox::LoadTexture("game/pic/mainGameScreenEnemy.png", Window::m_Renderer);
-	enemyPos = {
-		.x = 0,
-		.y = 0,
-		.w = 15,
-		.h = 15
-	};
+	enemyPic_ = new Texture("game/pic/mainGameScreenEnemy.png", Window::m_Renderer);
+	enemyPic_->SetPositionAndSize(0, 0, 15, 15);
 
-	lua_getglobal(ScriptManager::L, enemyCode);
+	lua_getglobal(ScriptManager::L, enemyType);
 	if (lua_pcall(ScriptManager::L, 0, 1, 0) != 0) {
 		fprintf(stderr, "Lua error while run function\n");
 		exit(1);
 	}
 
-	enemyMovePathScript = lua_tothread(ScriptManager::L, -1);
-	if (enemyMovePathScript == NULL) {
+	//Make a Lua thread
+	enemyMovePathScript_ = lua_tothread(ScriptManager::L, -1);
+	if (enemyMovePathScript_ == NULL) {
 		fprintf(stderr, "This is not a thread\n");
 		exit(1);
 	}
@@ -44,30 +40,31 @@ Enemy::EventHandler(SDL_Event* event)
 void
 Enemy::Update()
 {
-	if (lua_status(enemyMovePathScript) == LUA_OK || lua_status(enemyMovePathScript) == LUA_YIELD)
-		lua_resume(enemyMovePathScript, NULL, 0);
+	if (lua_status(enemyMovePathScript_) == LUA_OK || lua_status(enemyMovePathScript_) == LUA_YIELD)
+		lua_resume(enemyMovePathScript_, NULL, 0);
 
-	enemyPos.x = lua_tointeger(enemyMovePathScript, 1);
-	enemyPos.y = lua_tointeger(enemyMovePathScript, 2);
+	int x = lua_tointeger(enemyMovePathScript_, 1);
+	int y = lua_tointeger(enemyMovePathScript_, 2);
+	enemyPic_->MoveTo(x, y);
 
-	lua_pop(enemyMovePathScript, 2);
+	lua_pop(enemyMovePathScript_, 2);
 }
 
 void
 Enemy::Render()
 {
-	SDL_RenderCopy(Window::m_Renderer, enemyPic, NULL, &enemyPos);
+	enemyPic_->Render();
 }
 
 const SDL_Rect*
 Enemy::GetRect()
 {
-	return &enemyPos;
+	return enemyPic_->GetRect();
 }
 
 void
 Enemy::CleanUp()
 {
-	SDL_DestroyTexture(enemyPic);
-	enemyPic = NULL;
+	delete enemyPic_;
+	enemyPic_ = NULL;
 }

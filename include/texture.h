@@ -30,9 +30,10 @@ class Texture
 		void SetPositionAndSize(int x, int y, int w, int h);
 		void SetAlpha(int alpha);
 
-		void Move(int x, int y);
+	  	void Move(int x, int y);
+	  	void MoveTo(int x, int y);
 
-		const SDL_Rect GetRect();
+		const SDL_Rect* GetRect();
 
 		void Render();
 		void RenderFullWindow();

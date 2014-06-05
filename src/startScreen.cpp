@@ -9,15 +9,7 @@
 
 StartScreen::StartScreen()
 {
-	ScriptManager::NewState((char*)"game/script/gameSetting.lua");
-
-	char* logoPath = (char*)ScriptManager::GetGlobalString((char*)"logoPath");
-	m_Logo = SDLToolBox::LoadTexture(logoPath, Window::m_Renderer);
-
-	m_LogoPos.x = 0;
-	m_LogoPos.y = 0;
-	m_LogoPos.w = GAME_WINDOW_WIDTH;
-	m_LogoPos.h = GAME_WINDOW_HEIGHT;
+	logoPic_ = new Texture("game/pic/logo.bmp", Window::m_Renderer);
 }
 
 StartScreen::~StartScreen()
@@ -33,7 +25,6 @@ StartScreen::EventHandler(SDL_Event* event)
 			gameIsRunning = false;
 			gameStatusFlag = GAME_QUIT;
 			break;
-
 		case SDL_KEYDOWN:
 			switch (event->key.keysym.sym) {
 				case SDLK_RETURN:
@@ -43,7 +34,6 @@ StartScreen::EventHandler(SDL_Event* event)
 					break;
 			}
 			break;
-
 		case SDL_MOUSEBUTTONDOWN:
 			if (event->button.button == SDL_BUTTON_LEFT) {
 				gameIsRunning = false;
@@ -65,12 +55,12 @@ StartScreen::Update()
 		;
 	else if (frameCount <= 150)
 		alpha = 255 - (255 * (frameCount - 90) / 60);
-	else if (frameCount > 150) {
+	else if (frameCount > 180) {
 		gameIsRunning = false;
 		gameStatusFlag = MENU_SCREEN;
 	}
 
-	SDL_SetTextureAlphaMod(m_Logo, alpha);
+	logoPic_->SetAlpha(alpha);
 
 	frameCount++;
 }
@@ -82,10 +72,10 @@ StartScreen::Render()
 
 	//Draw white background
 	SDL_SetRenderDrawColor(Window::m_Renderer, 0xff, 0xff, 0xff, 255);
-	SDL_RenderFillRect(Window::m_Renderer, &m_LogoPos);
+	SDL_RenderFillRect(Window::m_Renderer, NULL);
 
 	//Paste logo
-	SDL_RenderCopy(Window::m_Renderer, m_Logo, NULL, &m_LogoPos);	
+	logoPic_->RenderFullWindow();
 
 	Window::Present();
 }
@@ -93,8 +83,6 @@ StartScreen::Render()
 void
 StartScreen::CleanUp()
 {
-	SDL_DestroyTexture(m_Logo);
-	m_Logo = NULL;
-
-	ScriptManager::CloseState();
+	delete logoPic_;
+	logoPic_ = NULL;
 }

@@ -78,10 +78,17 @@ Texture::Move(int x, int y)
 	position_.y += y;
 }
 
-const SDL_Rect
+void
+Texture::MoveTo(int x, int y)
+{
+	position_.x = x;
+	position_.y = y;
+}
+
+const SDL_Rect*
 Texture::GetRect()
 {
-	return position_;
+	return &position_;
 }
 
 

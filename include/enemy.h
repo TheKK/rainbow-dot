@@ -17,15 +17,16 @@
 
 #include "global.h"
 #include "window.h"
-#include "SDLToolBox.h"
 #include "scriptManager.h"
+
+#include "texture.h"
 
 using namespace std;
 
 class Enemy
 {
 	public:
-		Enemy(char* enemyCode);
+		Enemy(char* enemyType);
 		~Enemy();
 
 		void EventHandler(SDL_Event* event);
@@ -35,12 +36,11 @@ class Enemy
 		const SDL_Rect* GetRect();
 	private:
 		//Enemy parameters
-		SDL_Texture* enemyPic;
-		SDL_Rect enemyPos;
+		Texture* enemyPic_;
 
 		//Lua state
 		//lua_State* bulletGenerator;
-		lua_State* enemyMovePathScript;
+		lua_State* enemyMovePathScript_;
 
 		void CleanUp();
 };

@@ -9,54 +9,63 @@
 function testEnemy1()
 	local startX = 0
 	local startY = 30
-	local x = startX
-	local y = startY
-	local frameCount = 0
 
 	co = coroutine.create(
 	function()
-		while (1) do
-			x, y, frameCount = path1(startX, startY, 1, 0, frameCount)
+		while (true) do
+			startX, startY = path1(startX, startY, 1,-1, 30)
+			startX, startY = path1(startX, startY, 1, 1, 30)
 		end
 	end
 	)
 
 	return co
+end
+
+function path1(startX, startY, velX, velY, duration)
+	local x, y
+	local frameCount = 0
+
+	while (duration > 0) do
+		x = startX + (velX * frameCount)
+		y = startY + (velY * frameCount)
+
+		duration = duration - 1
+		frameCount = frameCount + 1
+
+		coroutine.yield(x, y)
+	end
+
+	return x, y
 end
 
 function testEnemy2()
 	local startX = 0
 	local startY = 100
-	local x = startX
-	local y = startY
-	local frameCount = 0
 
 	co = coroutine.create(
 	function()
-		while (1) do
-			x, y, frameCount = path2(startX, startY, x, y, frameCount)
+		while (true) do
+			startX, startY = path2(startX, startY, 6000)
 		end
 	end
 	)
 	return co
 end
 
-function path1(startX, startY, velX, velY, frameCount)
-	local x = startX + (velX * frameCount)
-	local y = startY + (velY * frameCount)
-	coroutine.yield(x, y)
+function path2(startX, startY, duration)
+	local x, y
+	local frameCount = 0
 
-	frameCount = frameCount + 1
+	while (duration > 0) do
+		x = startX + math.abs(math.sin(math.pi * duration / 30) * 3)
+		y = startY + math.abs(math.sin(math.pi * frameCount / 30) * 6)
 
-	return x, y, frameCount
-end
+		duration = duration - 1
+		frameCount = frameCount + 1
 
-function path2(startX, startY, x, y, frameCount)
-	x = x + math.abs(math.sin(math.pi * frameCount / 30) * 3)
-	y = startY + math.abs(math.sin(math.pi * frameCount / 30) * 6)
-	coroutine.yield(x, y)
+		coroutine.yield(x, y)
+	end
 
-	frameCount = frameCount + 1
-
-	return x, y, frameCount
+	return x, y
 end

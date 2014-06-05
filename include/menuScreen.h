@@ -1,7 +1,7 @@
 /*
  * Author: KK <thumbd03803@gmail.com>
  *
- * menuScreen.h 
+ * menuScreen.h
  *
  */
 
@@ -13,10 +13,9 @@
 
 #include "global.h"
 #include "window.h"
-#include "SDLToolBox.h"
 
+#include "texture.h"
 #include "gameStatus.h"
-#include "button.h"
 
 using namespace std;
 
@@ -34,10 +33,10 @@ class MenuScreen: public GameStatus
 		void Render();
 
 	private:
-		SDL_Texture* m_Background;
+		Texture* backgroundPic_;
 
-		int m_CurrentTitle;
-		SDL_Texture* m_Title[3];
+		int currentTitle_;
+		Texture* title_[3];
 
 		void CleanUp();
 };

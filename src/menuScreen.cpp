@@ -10,13 +10,13 @@
 MenuScreen::MenuScreen()
 {
 	//Load and set m_Logo
-	m_Background = SDLToolBox::LoadTexture("game/pic/menuScreenBackground.png", Window::m_Renderer);
+	backgroundPic_= new Texture("game/pic/menuScreenBackground.png", Window::m_Renderer);
 
-	m_Title[0] = SDLToolBox::LoadTexture("game/pic/menuScreenTitle1.png", Window::m_Renderer);
-	m_Title[1] = SDLToolBox::LoadTexture("game/pic/menuScreenTitle2.png", Window::m_Renderer);
-	m_Title[2] = SDLToolBox::LoadTexture("game/pic/menuScreenTitle3.png", Window::m_Renderer);
+	title_[0] = new Texture("game/pic/menuScreenTitle1.png", Window::m_Renderer);
+	title_[1] = new Texture("game/pic/menuScreenTitle2.png", Window::m_Renderer);
+	title_[2] = new Texture("game/pic/menuScreenTitle3.png", Window::m_Renderer);
 
-	m_CurrentTitle = 0;
+	currentTitle_ = 0;
 }
 
 MenuScreen::~MenuScreen()
@@ -47,8 +47,8 @@ MenuScreen::Update()
 
 	if (++frameCount >= 15) {
 		frameCount = 0;
-		if (++m_CurrentTitle > 2)
-			m_CurrentTitle = 0;
+		if (++currentTitle_ > 2)
+			currentTitle_ = 0;
 	}
 }
 
@@ -57,8 +57,8 @@ MenuScreen::Render()
 {
 	Window::Clear();
 
-	SDL_RenderCopy(Window::m_Renderer, m_Background, NULL, &Window::m_WindowRect);	
-	SDL_RenderCopy(Window::m_Renderer, m_Title[m_CurrentTitle], NULL, &Window::m_WindowRect);	
+	backgroundPic_->RenderFullWindow();
+	title_[currentTitle_]->RenderFullWindow();
 
 	Window::Present();
 }
@@ -66,12 +66,12 @@ MenuScreen::Render()
 void
 MenuScreen::CleanUp()
 {
-	SDL_DestroyTexture(m_Background);
-	m_Background = NULL;
+	delete backgroundPic_;
+	backgroundPic_ = NULL;
 	
 	for (int i = 0; i < 3; i++ ) {
-		SDL_DestroyTexture(m_Title[i]);
-		m_Title[i] = NULL;
+		delete title_[i];
+		title_[i] = NULL;
 	}
 
 }

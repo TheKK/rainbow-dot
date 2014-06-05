@@ -13,7 +13,7 @@ Screenshot
 ----------
 ![Screenshot](README/screenshot.gif)
 
-I want to make a 2d scroolling shooting game, and this is my early designed of game title.
+I want to make a 2d scroolling shooting game, and this is my early design of game title.
 It's also the only part you would think this is a game...
 
 Other part are work in process.
@@ -21,7 +21,7 @@ Other part are work in process.
 Library
 -------
 * [SDL2](http://www.libsdl.org/)
-* [SDL2_igame](http://www.libsdl.org/projects/SDL_image/)
+* [SDL2_image](http://www.libsdl.org/projects/SDL_image/)
 
 Build
 -----
@@ -45,7 +45,7 @@ Author
 ------
 KK/TheKK [<thumbd03803@gmail.com>]
 
-Welcom to report bugs or send pull request to me.
+Welcome to report bugs or send pull request to me.
 
 License
 -------

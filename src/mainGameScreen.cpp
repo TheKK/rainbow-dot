@@ -15,9 +15,6 @@ MainGameScreen::MainGameScreen()
 	player = new Player();
 	enemy = new Enemy((char*)"testEnemy1");
 	enemy2 = new Enemy((char*)"testEnemy2");
-
-	//Init special flags
-	startTransfrom = false;
 }
 
 MainGameScreen::~MainGameScreen()
@@ -33,6 +30,10 @@ MainGameScreen::EventHandler(SDL_Event* event)
 			gameIsRunning = false;
 			gameStatusFlag = GAME_QUIT;
 			break;
+		case SDL_KEYDOWN:
+			if (event->key.keysym.sym == SDLK_t)
+				Window::Resize(224, 299);
+			break;
 	}
 
 	player->EventHandler(event);
@@ -46,16 +47,6 @@ MainGameScreen::Update()
 	player->Update();
 	enemy->Update();
 	enemy2->Update();
-
-	//Transform window
-	if (startTransfrom) {
-		static int frameCount = 0;
-
-		if (frameCount++ < 140)
-			Window::Resize(GAME_WINDOW_WIDTH - frameCount, GAME_WINDOW_HEIGHT + frameCount);
-		else
-			startTransfrom = false;
-	}
 
 	//If Enemy is out of window
 	if (SDL_HasIntersection(&Window::m_WindowRect, enemy->GetRect()) == SDL_FALSE) {

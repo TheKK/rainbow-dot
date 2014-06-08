@@ -41,7 +41,7 @@ Window::Init(const char* windowTitle, int width, int height)
 	m_Window = SDL_CreateWindow(
 			windowTitle,					//Window title
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,	//Position where window appear
-			width * 3, height * 3,				//Size of window
+			width * 2, height * 2,				//Size of window
 			SDL_WINDOW_SHOWN			 	//SDL window flags
 			);
 	if (m_Window == NULL){
@@ -92,7 +92,7 @@ Window::Present()
 void
 Window::Resize(int width, int height)
 {
-	SDL_SetWindowSize(m_Window, width * 3, height * 3);
+	SDL_SetWindowSize(m_Window, width * 2, height * 2);
 	SDL_RenderSetLogicalSize(m_Renderer, width, height);
 	m_WindowRect = {
 		.x = 0,

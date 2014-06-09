@@ -10,11 +10,11 @@
 MenuScreen::MenuScreen()
 {
 	//Load and set m_Logo
-	backgroundPic_= new Texture("game/pic/menuScreenBackground.png", Window::m_Renderer);
+	backgroundPic_.LoadTexture("game/pic/menuScreenBackground.png", Window::m_Renderer);
 
-	title_[0] = new Texture("game/pic/menuScreenTitle1.png", Window::m_Renderer);
-	title_[1] = new Texture("game/pic/menuScreenTitle2.png", Window::m_Renderer);
-	title_[2] = new Texture("game/pic/menuScreenTitle3.png", Window::m_Renderer);
+	title_[0].LoadTexture("game/pic/menuScreenTitle1.png", Window::m_Renderer);
+	title_[1].LoadTexture("game/pic/menuScreenTitle2.png", Window::m_Renderer);
+	title_[2].LoadTexture("game/pic/menuScreenTitle3.png", Window::m_Renderer);
 
 	currentTitle_ = 0;
 }
@@ -57,8 +57,8 @@ MenuScreen::Render()
 {
 	Window::Clear();
 
-	backgroundPic_->RenderFullWindow();
-	title_[currentTitle_]->RenderFullWindow();
+	backgroundPic_.RenderFullWindow();
+	title_[currentTitle_].RenderFullWindow();
 
 	Window::Present();
 }
@@ -66,12 +66,4 @@ MenuScreen::Render()
 void
 MenuScreen::CleanUp()
 {
-	delete backgroundPic_;
-	backgroundPic_ = NULL;
-	
-	for (int i = 0; i < 3; i++ ) {
-		delete title_[i];
-		title_[i] = NULL;
-	}
-
 }

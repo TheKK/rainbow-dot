@@ -37,8 +37,6 @@ class PrototypeScreen: public GameStatus
 		SDL_Texture* m_TestPic;
 		SDL_Rect m_TestPicPos;
 
-		Button* button;
-
 		void CleanUp();
 };
 

@@ -33,10 +33,10 @@ class MenuScreen: public GameStatus
 		void Render();
 
 	private:
-		Texture* backgroundPic_;
+		Texture backgroundPic_;
 
 		int currentTitle_;
-		Texture* title_[3];
+		Texture title_[3];
 
 		void CleanUp();
 };

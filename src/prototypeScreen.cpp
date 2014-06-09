@@ -16,16 +16,6 @@ PrototypeScreen::PrototypeScreen()
 		.w = 50,
 		.h = 50
 	};
-
-	SDL_Rect buttonPos = {
-		.x = 50,
-		.y = 50,
-		.w = 100,
-		.h = 50
-	};
-
-	//button = new Button();
-	//button->Init("game/pic/buttonOnTest.bmp", "game/pic/buttonOffTest.bmp", "", &buttonPos);
 }
 
 PrototypeScreen::~PrototypeScreen()

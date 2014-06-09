@@ -37,12 +37,12 @@ class MainGameScreen: public GameStatus
 		//For lua to call
 		static void AddBulletToPoll();
 	private:
-		Player* player;
-		Enemy* enemy;
-		Enemy* enemy2;
+		Player player_;
+		Enemy* enemy1_;
+		Enemy* enemy2_;
 
 		//Event flag
-		bool startTransfrom;
+		bool startTransfrom_;
 
 		//Bullet pool
 		//vector<Bullet> bulletPoll;

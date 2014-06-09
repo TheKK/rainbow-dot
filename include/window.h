@@ -26,16 +26,22 @@ class Window
 
 		static void Resize(int width, int height);
 
+		static int X();
+		static int Y();
+		static int Width();
+		static int Height();
+
+		static const SDL_Rect* GetWindowRect();
+
 		static void Quit();
 
 		//SDL_Window and SDL_Renderer
 		static SDL_Window* m_Window;
 		static SDL_Renderer* m_Renderer;
-
+	private:
 		//Store game window's size
 		static SDL_Rect m_WindowRect;
 
-	private:
 		static bool m_IsWindowed;
 };
 

@@ -102,6 +102,37 @@ Window::Resize(int width, int height)
 	};	
 }
 
+int
+Window::X()
+{
+	return m_WindowRect.x;
+}
+
+
+int
+Window::Y()
+{
+	return m_WindowRect.y;
+}
+
+int
+Window::Width()
+{
+	return m_WindowRect.w;
+}
+
+int
+Window::Height()
+{
+	return m_WindowRect.h;
+}
+
+const SDL_Rect*
+Window::GetWindowRect()
+{
+	return &m_WindowRect;
+}
+
 void
 Window::Quit()
 {

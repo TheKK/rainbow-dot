@@ -39,8 +39,6 @@ GameSelectScreen::Render()
 {
 	Window::Clear();
 
-	SDL_RenderCopy(Window::m_Renderer, m_Background, NULL, &Window::m_WindowRect);	
-
 	Window::Present();
 }
 

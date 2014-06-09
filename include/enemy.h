@@ -26,8 +26,11 @@ using namespace std;
 class Enemy
 {
 	public:
-		Enemy(char* enemyType);
+		Enemy();
+		Enemy(char* enemyProfile);
 		~Enemy();
+
+		int LoadEnemyProfile(char* enemyPorfile);
 
 		void EventHandler(SDL_Event* event);
 		void Update();
@@ -36,7 +39,7 @@ class Enemy
 		const SDL_Rect* GetRect();
 	private:
 		//Enemy parameters
-		Texture* enemyPic_;
+		Texture enemyPic_;
 
 		//Lua state
 		//lua_State* bulletGenerator;

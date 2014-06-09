@@ -7,6 +7,10 @@
 
 #include "texture.h"
 
+Texture::Texture()
+{
+}
+
 Texture::Texture(string filePath, SDL_Renderer* renderer)
 {
 	LoadTexture(filePath, renderer);
@@ -40,10 +44,14 @@ Texture::LoadTexture(string filePath, SDL_Renderer* renderer)
 		return -1;
 	}
 
+	texture_ =  optimizedImage;
+	rect_.x = 0;
+	rect_.y = 0;
+	rect_.h = loadedImage->h;
+	rect_.w = loadedImage->w;
+
 	//Don't forget this
 	SDL_FreeSurface(loadedImage);
-
-	texture_ =  optimizedImage;
 	
 	return 0;
 }
@@ -56,12 +64,10 @@ Texture::ReleaseTexture()
 }
 
 void
-Texture::SetPositionAndSize(int x, int y, int w, int h)
+Texture::SetSize(int w, int h)
 {
-	position_.x = x;
-	position_.y = y;
-	position_.w = w;
-	position_.h = h;
+	rect_.w = w;
+	rect_.h = h;
 }
 
 void
@@ -74,28 +80,65 @@ Texture::SetAlpha(int alpha)
 void
 Texture::Move(int x, int y)
 {
-	position_.x += x;
-	position_.y += y;
+	rect_.x += x;
+	rect_.y += y;
+}
+
+void
+Texture::MoveXTo(int x)
+{
+	rect_.x = x;
+}
+
+void
+Texture::MoveYTo(int y)
+{
+	rect_.y = y;
 }
 
 void
 Texture::MoveTo(int x, int y)
 {
-	position_.x = x;
-	position_.y = y;
+	rect_.x = x;
+	rect_.y = y;
+}
+
+int
+Texture::X()
+{
+	return rect_.x;
+}
+
+
+int
+Texture::Y()
+{
+	return rect_.y;
+}
+
+int
+Texture::Width()
+{
+	return rect_.w;
+}
+
+int
+Texture::Height()
+{
+	return rect_.h;
 }
 
 const SDL_Rect*
 Texture::GetRect()
 {
-	return &position_;
+	return &rect_;
 }
 
 
 void
 Texture::Render()
 {
-	SDL_RenderCopy(Window::m_Renderer, texture_, NULL, &position_);
+	SDL_RenderCopy(Window::m_Renderer, texture_, NULL, &rect_);
 }
 
 void

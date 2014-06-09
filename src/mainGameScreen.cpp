@@ -12,9 +12,8 @@ MainGameScreen::MainGameScreen()
 	//Open new lua state
 	ScriptManager::NewState((char*)"game/script/mainGameScreen.lua");
 
-	player = new Player();
-	enemy = new Enemy((char*)"testEnemy1");
-	enemy2 = new Enemy((char*)"testEnemy2");
+	enemy1_ = new Enemy((char*)"testEnemy1");
+	enemy2_ = new Enemy((char*)"testEnemy2");
 }
 
 MainGameScreen::~MainGameScreen()
@@ -36,29 +35,29 @@ MainGameScreen::EventHandler(SDL_Event* event)
 			break;
 	}
 
-	player->EventHandler(event);
-	enemy->EventHandler(event);
-	enemy2->EventHandler(event);
+	player_.EventHandler(event);
+	enemy1_->EventHandler(event);
+	enemy2_->EventHandler(event);
 }
 
 void
 MainGameScreen::Update()
 {
-	player->Update();
-	enemy->Update();
-	enemy2->Update();
+	player_.Update();
+	enemy1_->Update();
+	enemy2_->Update();
 
 	//If Enemy is out of window
-	if (SDL_HasIntersection(&Window::m_WindowRect, enemy->GetRect()) == SDL_FALSE) {
-		delete enemy;
-		enemy = new Enemy((char*)"testEnemy1");
-		enemy->Update();
+	if (SDL_HasIntersection(Window::GetWindowRect(), enemy1_->GetRect()) == SDL_FALSE) {
+		delete enemy1_;
+		enemy1_ = new Enemy((char*)"testEnemy1");
+		enemy1_->Update();
 	}
 
-	if (SDL_HasIntersection(&Window::m_WindowRect, enemy2->GetRect()) == SDL_FALSE) {
-		delete enemy2;
-		enemy2 = new Enemy((char*)"testEnemy2");
-		enemy2->Update();
+	if (SDL_HasIntersection(Window::GetWindowRect(), enemy2_->GetRect()) == SDL_FALSE) {
+		delete enemy2_;
+		enemy2_ = new Enemy((char*)"testEnemy2");
+		enemy2_->Update();
 	}
 }
 
@@ -69,12 +68,12 @@ MainGameScreen::Render()
 
 	//Render white background
 	SDL_SetRenderDrawColor(Window::m_Renderer, 0xff, 0xff, 0xff, 0xcc);
-	SDL_RenderFillRect(Window::m_Renderer, &Window::m_WindowRect);
+	SDL_RenderFillRect(Window::m_Renderer, NULL);
 
 	//Render other objects
-	player->Render();
-	enemy->Render();
-	enemy2->Render();
+	player_.Render();
+	enemy1_->Render();
+	enemy2_->Render();
 
 	Window::Present();
 }
@@ -82,15 +81,6 @@ MainGameScreen::Render()
 void
 MainGameScreen::CleanUp()
 {
-	delete player;
-	player = NULL;
-
-	delete enemy;
-	enemy = NULL;
-
-	delete enemy2;
-	enemy2 = NULL;
-
 	//Clean lua state
 	ScriptManager::CloseState();
 }

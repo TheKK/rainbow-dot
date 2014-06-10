@@ -39,6 +39,9 @@ Player::EventHandler(SDL_Event* event)
 				case SDLK_z:
 					isShooting_ = true;
 					break;
+				case SDLK_c:
+					isRapidShooting_ = true;
+					break;
 			}
 			break;
 		case SDL_KEYUP:
@@ -57,7 +60,12 @@ Player::EventHandler(SDL_Event* event)
 					break;
 				case SDLK_z:
 					isShooting_ = false;
+					shootingCounter_ = 0;
+					slowMoveMode_ = false;
+					moveSpeed_ = 2;
 					break;
+				case SDLK_c:
+					isRapidShooting_ = false;
 			}
 			break;
 	}
@@ -82,13 +90,19 @@ Player::Update()
 		Move(RIGHT);
 
 	//Handler shooting stuffs
-	if (isShooting_) {
-		Bullet tmp(playerTexture_.X(), playerTexture_.Y());
+	if ((isShooting_ || isRapidShooting_) && !slowMoveMode_) {
+		Bullet tmp(playerTexture_.X(), playerTexture_.Y() + 5);
 		bulletPool_.push_back(tmp);
+
+		if (shootingCounter_ == 15) {
+			moveSpeed_ = 1;
+			slowMoveMode_ = true;
+		} else if (isShooting_)
+			shootingCounter_++;
 	}
 
 	for (vector<Bullet>::size_type i = 0; i < bulletPool_.size(); i++) {
-		bulletPool_[i].y -= 10;
+		bulletPool_[i].y -= 15;
 
 		if (bulletPool_[i].y + bulletTexture_.Height() < 0)
 			bulletPool_.erase(bulletPool_.begin() + i);
@@ -98,9 +112,22 @@ Player::Update()
 void
 Player::Render()
 {
+	//Bullets
 	for (vector<Bullet>::size_type i = 0; i < bulletPool_.size(); i++) {
 		bulletTexture_.MoveTo(bulletPool_[i].x, bulletPool_[i].y);
 		bulletTexture_.Render();
+	}
+
+	//Laser
+	if (slowMoveMode_ == true) {
+		int x = playerTexture_.X();
+		int y = playerTexture_.Y() + 5;
+		laserTexture_.MoveTo(x, y);
+
+		while(laserTexture_.Y() >= -laserTexture_.Height()) {
+			laserTexture_.Render();
+			laserTexture_.Move(0, -laserTexture_.Height());
+		}
 	}
 
 	playerTexture_.Render();

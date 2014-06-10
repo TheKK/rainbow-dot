@@ -61,8 +61,10 @@ class Player
 		//Player texture
 		Texture playerTexture_ = Texture("game/pic/mainGameScreenPlayer.png", Window::m_Renderer);
 		Texture bulletTexture_ = Texture("game/pic/playerBullet.png", Window::m_Renderer);
+		Texture laserTexture_ = Texture("game/pic/playerLaser.png", Window::m_Renderer);
 
 		int moveSpeed_ = 2;
+		bool slowMoveMode_ = false;
 
 		//Keyborad status
 		bool upIsPushed_ = false;
@@ -70,8 +72,10 @@ class Player
 		bool leftIsPushed_ = false;
 		bool rightIsPushed_ = false;
 
-		//Player state
+		//Shoot state
 		bool isShooting_ = false;
+		bool isRapidShooting_ = false;
+		int shootingCounter_ = 0;
 
 		vector<Bullet>bulletPool_;
 

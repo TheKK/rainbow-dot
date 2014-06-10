@@ -13,7 +13,6 @@
 
 #include "global.h"
 #include "window.h"
-#include "SDLToolBox.h"
 
 #include "gameStatus.h"
 #include "player.h"

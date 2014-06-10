@@ -1,33 +1,39 @@
 /*
  * Author: KK <thumbd03803@gmail.com>
  *
- * texture.h
+ * textLabel.h
  *
  */
 
-#ifndef TEXTURE_H
-#define TEXTURE_H
+#ifndef TEXT_LABEL_H
+#define TEXT_LABEL_H
 
 #include <iostream>
 #include <string>
 #include <cstdio>
 #include <SDL.h>
-#include <SDL_image.h>
+#include <SDL_ttf.h>
 
 #include "global.h"
 #include "window.h"
 
 using namespace std;
 
-class Texture
+class TextLabel
 {
 	public:
-		Texture();
-		Texture(string filePath, SDL_Renderer* renderer);
-		~Texture();
+		TextLabel();
+		TextLabel(
+				string fontPath, int fontSize, string text, SDL_Color color,
+				SDL_Renderer* renderer
+			 );
+		~TextLabel();
 
-		int LoadTexture(string filePath, SDL_Renderer* renderer);
-		void ReleaseTexture();
+		int LoadFontAndText(
+				string fontPath, int fontSize, string text, SDL_Color color,
+				SDL_Renderer* renderer
+				);
+		void ReleaseText();
 
 		void SetSize(int w, int h);
 		void SetAlpha(int alpha);

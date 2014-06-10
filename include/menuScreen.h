@@ -15,6 +15,7 @@
 #include "window.h"
 
 #include "texture.h"
+#include "textLabel.h"
 #include "gameStatus.h"
 
 using namespace std;
@@ -37,6 +38,8 @@ class MenuScreen: public GameStatus
 
 		int currentTitle_;
 		Texture title_[3];
+
+		TextLabel label;
 
 		void CleanUp();
 };

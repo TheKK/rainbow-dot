@@ -14,7 +14,6 @@
 #include <SDL.h>
 
 #include "global.h"
-#include "SDLToolBox.h"
 #include "window.h"
 
 using namespace std;

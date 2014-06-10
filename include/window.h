@@ -9,7 +9,10 @@
 #define WINDOW_H
 
 #include <iostream>
+#include <string>
 #include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
 
 using namespace std;
 
@@ -25,6 +28,8 @@ class Window
 		static void Present();
 
 		static void Resize(int width, int height);
+
+		static void SetTitle(string title);
 
 		static int X();
 		static int Y();

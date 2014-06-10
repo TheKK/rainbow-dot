@@ -1,7 +1,7 @@
 /*
  * Author: KK <thumbd03803@gmail.com>
  *
- * Texture.cpp
+ * texture.cpp
  *
  */
 
@@ -25,12 +25,10 @@ int
 Texture::LoadTexture(string filePath, SDL_Renderer* renderer)
 {
 	SDL_Surface* loadedImage = NULL;
-	SDL_Texture* optimizedImage = NULL;
-
 	string basePath = SDL_GetBasePath();
 
 	loadedImage = IMG_Load((basePath + filePath).c_str());
-	if (loadedImage == NULL){
+	if (loadedImage == NULL) {
 		fprintf(stderr, "SDL error while loading \"%s\": %s\n", filePath.c_str(), IMG_GetError());
 		return -1;
 	}
@@ -38,13 +36,12 @@ Texture::LoadTexture(string filePath, SDL_Renderer* renderer)
 	//Set color key as 0x00, 0xff, 0xff
 	SDL_SetColorKey(loadedImage, SDL_TRUE, SDL_MapRGB(loadedImage->format, 0X00, 0XFF, 0XFF));
 		
-	optimizedImage = SDL_CreateTextureFromSurface(renderer, loadedImage);
-	if (optimizedImage == NULL){
+	texture_ = SDL_CreateTextureFromSurface(renderer, loadedImage);
+	if (texture_ == NULL) {
 		fprintf(stderr, "SDL error while convering surface into texture: %s\n", SDL_GetError());
 		return -1;
 	}
 
-	texture_ =  optimizedImage;
 	rect_.x = 0;
 	rect_.y = 0;
 	rect_.h = loadedImage->h;

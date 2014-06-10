@@ -16,6 +16,13 @@ MenuScreen::MenuScreen()
 	title_[1].LoadTexture("game/pic/menuScreenTitle2.png", Window::m_Renderer);
 	title_[2].LoadTexture("game/pic/menuScreenTitle3.png", Window::m_Renderer);
 
+	SDL_Color color = {0, 0, 0};
+	label.LoadFontAndText(
+			"game/fonts/hachicro/hachicro.TTF", 8, "PRESS ANY BUTTON TO START", color,
+			Window::m_Renderer
+			);
+	label.MoveTo(70, 135);
+
 	currentTitle_ = 0;
 }
 
@@ -33,6 +40,8 @@ MenuScreen::EventHandler(SDL_Event* event)
 			gameStatusFlag = GAME_QUIT;
 			break;
 
+		case SDL_KEYDOWN:
+			if (event->key.keysym.sym == SDLK_RETURN)
 		case SDL_MOUSEBUTTONDOWN:
 			gameIsRunning = false;
 			gameStatusFlag = MAIN_GAME_SCREEN;
@@ -43,13 +52,27 @@ MenuScreen::EventHandler(SDL_Event* event)
 void
 MenuScreen::Update()
 {
-	static int frameCount = 0;
+	static int titleFrameCount = 0;
+	static int labelFrameCount = 0;
 
-	if (++frameCount >= 15) {
-		frameCount = 0;
+	//For title image changing
+	if (++titleFrameCount >= 15) {
+		titleFrameCount = 0;
 		if (++currentTitle_ > 2)
 			currentTitle_ = 0;
 	}
+
+	//For text label changing
+	labelFrameCount++;
+	if (labelFrameCount == 90)
+		label.SetAlpha(0);
+
+	if (labelFrameCount == 120) {
+		label.SetAlpha(255);
+		labelFrameCount = 0;
+	}
+
+		
 }
 
 void
@@ -59,6 +82,8 @@ MenuScreen::Render()
 
 	backgroundPic_.RenderFullWindow();
 	title_[currentTitle_].RenderFullWindow();
+
+	label.Render();
 
 	Window::Present();
 }

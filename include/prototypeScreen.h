@@ -13,7 +13,6 @@
 
 #include "global.h"
 #include "window.h"
-#include "SDLToolBox.h"
 
 #include "gameStatus.h"
 #include "button.h"
@@ -32,11 +31,7 @@ class PrototypeScreen: public GameStatus
 		void EventHandler(SDL_Event* event);
 		void Update();
 		void Render();
-
 	private:
-		SDL_Texture* m_TestPic;
-		SDL_Rect m_TestPicPos;
-
 		void CleanUp();
 };
 

@@ -88,13 +88,11 @@ Player::Update()
 	}
 
 	for (vector<Bullet>::size_type i = 0; i < bulletPool_.size(); i++) {
-		bulletPool_[i].y -= 15;
+		bulletPool_[i].y -= 10;
 
 		if (bulletPool_[i].y + bulletTexture_.Height() < 0)
 			bulletPool_.erase(bulletPool_.begin() + i);
 	}
-
-			
 }
 
 void

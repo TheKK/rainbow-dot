@@ -50,3 +50,5 @@ Welcome to report bugs or send pull request to me.
 License
 -------
 rainbow-dot is licensed under [GPLv3](http://www.gnu.org/licenses/gpl-3.0.html)
+
+The license of sources used in this game, please check the file in their folder.

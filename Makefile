@@ -13,22 +13,36 @@ SRC_PATH = $(PWD)/src
 INCLUDE = -I $(PWD)/include
 INCLUDE += $(shell pkg-config --cflags sdl2)
 INCLUDE += $(shell pkg-config --cflags SDL2_image)
+INCLUDE += $(shell pkg-config --cflags SDL2_ttf)
 INCLUDE += $(shell pkg-config --cflags lua)
 INCLUDE += $(shell pkg-config --cflags openal)
 
 # Libs flags
 LIB += $(shell pkg-config --libs sdl2)
 LIB += $(shell pkg-config --libs SDL2_image)
+LIB += $(shell pkg-config --libs SDL2_ttf)
 LIB += $(shell pkg-config --libs lua)
+LIB += $(shell pkg-config --libs openal)
 
 # Object files
 OBJ_PATH = $(PWD)/obj
-OBJ = main.o window.o timer.o SDLToolBox.o texture.o scriptManager.o button.o startScreen.o menuScreen.o gameSelectScreen.o mainGameScreen.o prototypeScreen.o player.o enemy.o
+OBJ = main.o \
+      window.o \
+      timer.o \
+      texture.o \
+      textLabel.o \
+      scriptManager.o \
+      startScreen.o \
+      menuScreen.o \
+      mainGameScreen.o \
+      prototypeScreen.o \
+      player.o \
+      enemy.o
 
 OUT_EXE= rainbow
 
 all: $(OUT_EXE)
-	@cowsay "Everything done!!"
+	@echo "===========[Everything done!!]============"
 
 $(OUT_EXE): $(addprefix $(OBJ_PATH)/, $(OBJ))
 	@echo "    LD    " $(notdir $@)

@@ -33,7 +33,18 @@ Window::Init(const char* windowTitle, int width, int height)
 {
 	//Initialize SDL
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0){
-		fprintf(stderr, "SDL window error: %s\n", SDL_GetError());
+		fprintf(stderr, "Error while init SDL subsystem: %s\n", SDL_GetError());
+		exit(1);
+	}
+
+	//TODO: Maybe I should make another class to handle these thing
+	if (IMG_Init(IMG_INIT_PNG) < 0) {
+		fprintf(stderr, "Error while init SDL_image: %s\n", IMG_GetError());
+		exit(1);
+	}
+
+	if (TTF_Init() < 0) {
+		fprintf(stderr, "Error while init SDL_tty: %s\n", TTF_GetError());
 		exit(1);
 	}
 
@@ -100,6 +111,12 @@ Window::Resize(int width, int height)
 		.w = width,
 		.h = height
 	};	
+}
+
+void
+Window::SetTitle(string title)
+{
+	SDL_SetWindowTitle(m_Window, title.c_str());
 }
 
 int

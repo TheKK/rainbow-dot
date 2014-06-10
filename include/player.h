@@ -57,16 +57,21 @@ class Player
 		void Render();
 
 		void Move(enum MoveDirection moveDircection);
+		void BulletsRender();
+		void LaserRender();
 	private:
 		//Player texture
 		Texture playerTexture_ = Texture("game/pic/mainGameScreenPlayer.png", Window::m_Renderer);
 		Texture bulletTexture_ = Texture("game/pic/playerBullet.png", Window::m_Renderer);
 		Texture laserTexture_ = Texture("game/pic/playerLaser.png", Window::m_Renderer);
 
-		int moveSpeed_ = 2;
+		//Move state
+		const int normalMoveSpeed_ = 2;
+		const int slowMoveSpeed_ = 1;
+		int moveSpeed_ = normalMoveSpeed_;
 		bool slowMoveMode_ = false;
 
-		//Keyborad status
+		//Keyborad state
 		bool upIsPushed_ = false;
 		bool downIsPushed_ = false;
 		bool leftIsPushed_ = false;
@@ -76,6 +81,9 @@ class Player
 		bool isShooting_ = false;
 		bool isRapidShooting_ = false;
 		int shootingCounter_ = 0;
+
+		//Laser state
+		int laserFrameCount_ = 1;
 
 		vector<Bullet>bulletPool_;
 

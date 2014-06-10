@@ -60,9 +60,9 @@ Player::EventHandler(SDL_Event* event)
 					break;
 				case SDLK_z:
 					isShooting_ = false;
-					shootingCounter_ = 0;
 					slowMoveMode_ = false;
-					moveSpeed_ = 2;
+					shootingCounter_ = 1;
+					moveSpeed_ = normalMoveSpeed_;
 					break;
 				case SDLK_c:
 					isRapidShooting_ = false;
@@ -95,8 +95,9 @@ Player::Update()
 		bulletPool_.push_back(tmp);
 
 		if (shootingCounter_ == 15) {
-			moveSpeed_ = 1;
+			moveSpeed_ = slowMoveSpeed_;
 			slowMoveMode_ = true;
+			laserFrameCount_ = 1;
 		} else if (isShooting_)
 			shootingCounter_++;
 	}
@@ -112,23 +113,10 @@ Player::Update()
 void
 Player::Render()
 {
-	//Bullets
-	for (vector<Bullet>::size_type i = 0; i < bulletPool_.size(); i++) {
-		bulletTexture_.MoveTo(bulletPool_[i].x, bulletPool_[i].y);
-		bulletTexture_.Render();
-	}
+	BulletsRender();
 
-	//Laser
-	if (slowMoveMode_ == true) {
-		int x = playerTexture_.X();
-		int y = playerTexture_.Y() + 5;
-		laserTexture_.MoveTo(x, y);
-
-		while(laserTexture_.Y() >= -laserTexture_.Height()) {
-			laserTexture_.Render();
-			laserTexture_.Move(0, -laserTexture_.Height());
-		}
-	}
+	if (slowMoveMode_ == true)
+		LaserRender();
 
 	playerTexture_.Render();
 }
@@ -158,6 +146,34 @@ Player::Move(enum MoveDirection moveDircection)
 				playerTexture_.MoveXTo(Window::Width() - playerTexture_.Width());
 			break;
 	}
+}
+
+void
+Player::BulletsRender()
+{
+	for (vector<Bullet>::size_type i = 0; i < bulletPool_.size(); i++) {
+		bulletTexture_.MoveTo(bulletPool_[i].x, bulletPool_[i].y);
+		bulletTexture_.Render();
+	}
+}
+
+void
+Player::LaserRender()
+{
+		int x = playerTexture_.X();
+		int y = playerTexture_.Y() + 5;
+		laserTexture_.MoveTo(x, y);
+
+		//Make laser a little delay on screen
+		for (int i = 0; i < laserFrameCount_; i++) {
+				laserTexture_.Render();
+				laserTexture_.Move(0, -laserTexture_.Height());
+				laserTexture_.Render();
+				laserTexture_.Move(0, -laserTexture_.Height());
+		}
+
+		if (laserTexture_.Y() >= -laserTexture_.Height())
+			laserFrameCount_++;
 }
 
 void

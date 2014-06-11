@@ -53,7 +53,7 @@ Window::Init(const char* windowTitle, int width, int height)
 			windowTitle,					//Window title
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,	//Position where window appear
 			width * 2, height * 2,				//Size of window
-			SDL_WINDOW_SHOWN			 	//SDL window flags
+			SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE	 	//SDL window flags
 			);
 	if (m_Window == NULL){
 		fprintf(stderr, "SDL window error: %s\n", SDL_GetError());

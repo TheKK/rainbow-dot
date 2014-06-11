@@ -14,8 +14,8 @@
 #include "global.h"
 #include "window.h"
 
-#include "texture.h"
 #include "gameStatus.h"
+#include "texture.h"
 
 using namespace std;
 
@@ -31,7 +31,6 @@ class StartScreen: public GameStatus
 		void EventHandler(SDL_Event* event);
 		void Update();
 		void Render();
-
 	private:
 		//Logo of KK
 		Texture* logoPic_;

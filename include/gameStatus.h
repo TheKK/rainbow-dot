@@ -16,6 +16,8 @@ using namespace std;
 class GameStatus
 {
 	public:
+		virtual ~GameStatus(){};
+
 		virtual void EventHandler(SDL_Event* event) = 0;
 		virtual void Update() = 0;
 		virtual void Render() = 0;

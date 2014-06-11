@@ -42,7 +42,7 @@ OBJ = main.o \
 OUT_EXE= rainbow
 
 all: $(OUT_EXE)
-	@echo "===========[Everything done!!]============"
+	@echo "===========[[Everything done!!]]============"
 
 $(OUT_EXE): $(addprefix $(OBJ_PATH)/, $(OBJ))
 	@echo "    LD    " $(notdir $@)
@@ -54,4 +54,5 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp
 
 .PHONY: clean
 clean:
-	rm -frv $(OBJ_PATH)/*.o $(OUT_EXE)
+	@rm -frv $(OBJ_PATH)/*.o $(OUT_EXE)
+	@echo "===========[[Everything removed!!]]============"

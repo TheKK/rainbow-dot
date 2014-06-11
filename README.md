@@ -7,7 +7,7 @@ It's my first game that use all my programing knowledge and skill.
 Hope it can be finished...
 
 My goal is not to finish this game, but learn about "How to make a game and what skill I need".
-This repo will recored all my process before I make it playable and fun stuff.
+This repo will recored all my progress before I make it playable and become fun.
 
 Screenshot
 ----------
@@ -16,12 +16,14 @@ Screenshot
 I want to make a 2d scroolling shooting game, and this is my early design of game title.
 It's also the only part you would think this is a game...
 
-Other part are work in process.
+Other part are work in progress.
 
 Library
 -------
 * [SDL2](http://www.libsdl.org/)
 * [SDL2_image](http://www.libsdl.org/projects/SDL_image/)
+* [SDL2_ttf](http://www.libsdl.org/projects/SDL_ttf/)
+* [Lua](http://www.lua.org/)
 
 Build
 -----
